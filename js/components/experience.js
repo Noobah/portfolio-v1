@@ -4,16 +4,26 @@
 const strong = (text) =>
   text.replace(/(\d+%[^.,]*|\d+\+ hours?\/week)/g, "<b>$&</b>");
 
+function metricText(metric) {
+  const value = Number(metric?.value ?? 0);
+  const suffix = String(metric?.suffix ?? "");
+  const safeValue = Number.isFinite(value) ? value : 0;
+  return `${safeValue}${suffix}`;
+}
+
 export function renderExperience(root, data) {
   const sections = data.experience
     .map((job) => {
       const metrics = job.metrics
         .map(
-          (m) => `
+          (m) => {
+            const value = metricText(m);
+            return `
             <span class="chip metric-chip">
-              <span class="metric-value" data-count="${m.value}" data-suffix="${m.suffix}">${m.value}${m.suffix}</span>
+              <span class="metric-value" data-count="${Number(m?.value ?? 0)}" data-suffix="${String(m?.suffix ?? "")}">${value}</span>
               <span class="metric-label">${m.label}</span>
-            </span>`,
+            </span>`;
+          },
         )
         .join("");
 
