@@ -25,6 +25,11 @@ export function renderHero(root, data) {
     <div class="hero">
       <div class="hero-copy">
         <p class="hero-eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Portfolio — 2026</p>
+        <p class="hero-now">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="hero-now-label">Currently building:</span>
+          <strong>${profile.currentlyBuilding}</strong>
+        </p>
         <h1 class="hero-name">
           <span>${firstName}</span>
           <span class="hero-name-rest">${rest.join(" ")}</span>
@@ -56,7 +61,7 @@ export function renderHero(root, data) {
 
       <figure class="hero-figure">
         <div class="hero-avatar-wrap">
-          <img class="hero-avatar" src="${profile.avatar}" alt="Portrait of ${profile.name}" referrerpolicy="no-referrer" width="180" height="180" />
+          <img class="hero-avatar" src="${profile.avatar}" alt="Portrait of ${profile.name}" width="440" height="440" fetchpriority="high" decoding="async" />
         </div>
       </figure>
     </div>`;

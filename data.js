@@ -1,12 +1,17 @@
 /**
  * Portfolio data — edit this file to update the whole site.
- * Loaded by js/main.js and passed to each component.
+ * Loaded before js/main.js and passed to each component.
+ *
+ * TODO (content you own): replace the placeholder testimonials and add real
+ * project screenshots/videos below.
  */
 window.PORTFOLIO = {
   meta: {
     title: "Ravi Bhushan V | Full Stack Engineer",
     description:
       "Full-Stack Engineer — MERN, TypeScript, AI Systems. I build scalable backend platforms, real-time APIs, and LLM-powered products.",
+    url: "https://noobah.github.io/portfolio-v1/",
+    ogImage: "assets/og.png",
   },
 
   profile: {
@@ -14,8 +19,8 @@ window.PORTFOLIO = {
     role: "Full Stack Engineer",
     focus: "MERN · TypeScript · AI Systems",
     status: "Open to work",
-    avatar:
-      "https://lh3.googleusercontent.com/d/1iGgigIazLdAzkOlTBiIJxiYZDZhLVrji",
+    currentlyBuilding: "an event-driven WhatsApp automation layer",
+    avatar: "assets/avatar.jpg",
     bio: [
       "I build scalable backend platforms, real-time APIs, and LLM-powered products that ship fast and hold under pressure. At Fastack Technologies, I shipped systems that cut client onboarding by 87% and eliminated 10+ hours/week of manual ops — from no-code workflow engines to LLM streaming pipelines, all in production.",
       "I work best at the intersection of backend systems and product thinking — from architecture decisions to zero-downtime deployments.",
@@ -34,26 +39,20 @@ window.PORTFOLIO = {
     },
   ],
 
-  /** GitHub username used for the live contributions graph. */
+  /** GitHub username used for profile links and the command palette. */
   githubUsername: "ivarcodes",
-
-  numbers: [
-    { value: "87%", label: "faster client onboarding" },
-    { value: "10+", label: "hours/week of ops eliminated" },
-    { value: "40%", label: "lower LLM first-token latency" },
-    { value: "98%", label: "notification delivery reliability" },
-  ],
 
   experience: [
     {
       company: "Fastack Technologies",
       role: "Full Stack Engineer",
       period: "Mar 2025 — Mar 2026",
-      highlights: [
-        "87% faster onboarding",
-        "40% lower latency",
-        "10+ hrs/week saved",
-        "98% delivery reliability",
+      /** Structured so the pills can count up on scroll. */
+      metrics: [
+        { value: 87, suffix: "%", label: "faster onboarding" },
+        { value: 40, suffix: "%", label: "lower latency" },
+        { value: 10, suffix: "+", label: "hrs/week saved" },
+        { value: 98, suffix: "%", label: "delivery reliability" },
       ],
       projects: [
         {
@@ -63,6 +62,15 @@ window.PORTFOLIO = {
             "Architected a no-code workflow automation platform using React Flow + Node.js, enabling non-technical users to configure end-to-end business logic independently — cutting client onboarding time by 87% and eliminating developer dependency entirely.",
           metric: "87% faster",
           stack: ["React Flow", "Node.js", "REST APIs", "Event-Driven"],
+          diagram: {
+            label: "Whasta Automation request flow",
+            nodes: [
+              { title: "React Flow", sub: "visual builder" },
+              { title: "Node.js API", sub: "validate + auth" },
+              { title: "Event bus", sub: "workers + retries" },
+              { title: "Integrations", sub: "WhatsApp · Tally · Odoo" },
+            ],
+          },
         },
         {
           name: "Docsync Engine",
@@ -96,13 +104,26 @@ window.PORTFOLIO = {
     {
       name: "StudyBuddy",
       tag: "AI EdTech",
+      monogram: "SB",
+      accent: "#3b82f6",
+      metric: "Token-by-token AI roadmaps",
+      summary:
+        "Real-time AI tutor that turns vague goals into day-by-day roadmaps.",
       problem:
-        "Students have no structured way to turn vague goals into actionable, day-by-day plans.",
-      solution:
-        "Real-time AI tutor using Llama-3 via Groq with SSE streaming — generates personalized roadmaps token-by-token with MongoDB-backed cross-device session persistence.",
-      impact:
-        "Measurably higher engagement vs. static resources. JWT-secured with protected routes and persistent login.",
+        "Students have no structured way to turn vague goals into actionable, day-by-day plans. Static study guides go stale and never adapt to the learner.",
+      approach:
+        "Built a conversational planner that asks for the goal, current level, and timeline, then streams a personalized roadmap. Sessions persist across devices so learners can pick up where they left off.",
+      architecture:
+        "Next.js client → API route → Groq Llama-3 with SSE streaming → MongoDB session store. JWT auth protects routes and keeps each learner's plan private.",
+      results:
+        "Measurably higher engagement than static resources, with answers appearing token-by-token instead of after a long spinner. JWT-secured routes and persistent login are live in production.",
       stack: ["Next.js", "Groq AI", "MongoDB", "SSE", "JWT"],
+      media: {
+        type: "image",
+        src: "",
+        alt: "StudyBuddy roadmap and streaming tutor interface",
+        note: "Preview coming soon.",
+      },
       links: [
         {
           label: "Live Demo",
@@ -118,28 +139,58 @@ window.PORTFOLIO = {
     {
       name: "SentriX",
       tag: "Security",
+      monogram: "SX",
+      accent: "#06b6d4",
+      metric: "<100ms raid detection",
+      summary:
+        "Event-driven Discord moderation with sub-100ms raid detection.",
       problem:
-        "Large Discord communities are vulnerable to coordinated raids with no fast automated response.",
-      solution:
-        "Event-driven moderation bot with <100ms raid detection latency, per-server configurable rule sets, and a custom command handler reducing memory overhead by 25%.",
-      impact:
-        "Zero manual restarts — deployable with a single command. SQLite-backed per-guild config persists across reboots.",
+        "Large Discord communities are vulnerable to coordinated raids, and manual moderation is always slower than the attack.",
+      approach:
+        "Built an event-driven moderation bot with configurable per-server rules, a lightweight command handler, and raid detection that reacts before a channel is overrun.",
+      architecture:
+        "Discord gateway events → rule engine → action queue → SQLite per-guild config. A single command deploys the bot with zero manual restarts.",
+      results:
+        "Sub-100ms raid detection, 25% lower memory overhead from the custom command handler, and per-guild settings that persist across reboots.",
       stack: ["Node.js", "Discord.js", "SQLite", "Event-Driven"],
+      media: {
+        type: "image",
+        src: "",
+        alt: "SentriX moderation dashboard and raid alert",
+        note: "Preview coming soon.",
+      },
       links: [
-        { label: "Live Demo", href: "https://sentrix-pm8s.onrender.com", primary: true },
+        {
+          label: "Live Demo",
+          href: "https://sentrix-pm8s.onrender.com",
+          primary: true,
+        },
         { label: "GitHub", href: "https://github.com/ivarcodes/sentrix" },
       ],
     },
     {
       name: "Unifetch",
       tag: "Browser Extension",
+      monogram: "UF",
+      accent: "#8b5cf6",
+      metric: "Live on Firefox Add-ons",
+      summary:
+        "One-click bulk asset extraction for Firefox, live on the marketplace.",
       problem:
-        "Developers waste time manually extracting assets from web pages during audits and development.",
-      solution:
-        "Manifest V3 Firefox extension with intelligent DOM traversal for one-click bulk asset extraction — zero external dependencies.",
-      impact:
-        "Live on the Firefox Add-ons Marketplace with real users. Demonstrates browser API depth beyond typical full-stack work.",
+        "Developers waste time manually extracting assets from web pages during audits, migrations, and competitive research.",
+      approach:
+        "Built a Manifest V3 Firefox extension with intelligent DOM traversal that finds and downloads page assets in one click — no external dependencies.",
+      architecture:
+        "Content script scans the DOM → background script batches downloads → popup UI shows progress and filters. Packaged as a Manifest V3 extension.",
+      results:
+        "Live on the Firefox Add-ons Marketplace with real users, proving browser API depth beyond typical full-stack work.",
       stack: ["JavaScript", "Manifest V3", "DOM API"],
+      media: {
+        type: "image",
+        src: "",
+        alt: "Unifetch extension popup extracting page assets",
+        note: "Preview coming soon.",
+      },
       links: [
         {
           label: "Marketplace",
@@ -148,6 +199,26 @@ window.PORTFOLIO = {
         },
         { label: "GitHub", href: "https://github.com/ivarcodes" },
       ],
+    },
+  ],
+
+  /** TODO: replace these two placeholders with real quotes and names. */
+  testimonials: [
+    {
+      quote:
+        "Ravi turns ambiguous operational problems into systems the team can actually run. The workflow platform he built removed a recurring developer bottleneck for us.",
+      name: "Reference available on request",
+      role: "Operations lead, Fastack Technologies",
+      initials: "01",
+      placeholder: true,
+    },
+    {
+      quote:
+        "He is unusually good at the backend details that make a product feel fast — streaming, retries, observability — without losing sight of the user experience.",
+      name: "Reference available on request",
+      role: "Engineering manager, product team",
+      initials: "02",
+      placeholder: true,
     },
   ],
 
@@ -177,12 +248,12 @@ window.PORTFOLIO = {
     {
       category: "AI / GenAI",
       items: [
-        { name: "OpenAI API" },
-        { name: "Anthropic Claude" },
-        { name: "Groq / Llama-3" },
-        { name: "LLM Streaming" },
-        { name: "SSE / WebSockets" },
-        { name: "Prompt Engineering" },
+        { name: "OpenAI API", icon: "openai" },
+        { name: "Anthropic Claude", icon: "anthropic" },
+        { name: "Groq / Llama-3", icon: "bolt" },
+        { name: "LLM Streaming", icon: "stream" },
+        { name: "SSE / WebSockets", icon: "radio" },
+        { name: "Prompt Engineering", icon: "terminal" },
       ],
     },
     {
@@ -205,12 +276,16 @@ window.PORTFOLIO = {
       school: "Sikkim Manipal University",
       period: "2025 — Present",
       current: true,
+      highlight:
+        "Coursework: advanced databases, distributed systems, and cloud architecture.",
     },
     {
       degree: "Bachelor of Computer Applications",
       school: "DG Vaishnav College, Chennai",
       period: "2021 — 2024",
       current: false,
+      highlight:
+        "Coursework: data structures, DBMS, and web technologies. Built the department's event registration portal.",
     },
   ],
 };

@@ -39,10 +39,13 @@ export function renderContact(root, data) {
         <div class="contact-actions">
           <a class="contact-email" href="${emailHref}">
             <span>${email}</span>
-            <span class="contact-arrow" aria-hidden="true">↗</span>
+            <span class="contact-arrow" aria-hidden="true">${icons.arrowUpRight}</span>
           </a>
           <div class="contact-row">
-            <button class="copy-btn" type="button" data-copy-email aria-live="polite">Copy email</button>
+            <button class="copy-btn" type="button" data-copy-email aria-live="polite">
+              ${icons.copy}
+              <span class="copy-label">Copy email</span>
+            </button>
             <div class="contact-socials">${socials}</div>
           </div>
         </div>
@@ -57,7 +60,7 @@ export function renderContact(root, data) {
       await copyEmail(email);
       showCopied(copyButton);
     } catch {
-      copyButton.textContent = "Copy failed";
+      setCopyLabel(copyButton, "Copy failed");
     }
   });
 }
@@ -82,11 +85,20 @@ async function copyEmail(email) {
   textarea.remove();
 }
 
+function setCopyLabel(button, text) {
+  const label = button.querySelector(".copy-label");
+  if (label) {
+    label.textContent = text;
+  } else {
+    button.textContent = text;
+  }
+}
+
 function showCopied(button) {
-  button.textContent = "Copied ✓";
+  setCopyLabel(button, "Copied ✓");
   button.classList.add("is-copied");
   window.setTimeout(() => {
-    button.textContent = "Copy email";
+    setCopyLabel(button, "Copy email");
     button.classList.remove("is-copied");
   }, 1800);
 }

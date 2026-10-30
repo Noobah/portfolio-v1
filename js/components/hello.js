@@ -1,4 +1,6 @@
 /** About panel: time-aware greeting + how I work. */
+import { icons } from "../icons.js";
+
 export function renderHello(root, data) {
   const hour = new Date().getHours();
   const greeting =
@@ -9,7 +11,7 @@ export function renderHello(root, data) {
   root.innerHTML = `
     <div class="panel-header">
       <span class="panel-title">About</span>
-      <span class="panel-index">02 / how I work</span>
+      <span class="panel-index">01 / how I work</span>
     </div>
     <div class="panel-body">
       <div class="about-grid">
@@ -23,7 +25,7 @@ export function renderHello(root, data) {
           </p>
           <a class="about-link" href="${email}">
             Currently open to full-stack / platform work — let's talk
-            <span aria-hidden="true">↗</span>
+            ${icons.arrowUpRight}
           </a>
           <p class="signature">— ${firstName}</p>
         </div>

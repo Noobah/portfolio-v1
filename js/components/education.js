@@ -10,6 +10,7 @@ export function renderEducation(root, data) {
       </div>
       <h3 class="edu-degree">${e.degree}</h3>
       <p class="edu-school">${e.school}</p>
+      ${e.highlight ? `<p class="edu-highlight">${e.highlight}</p>` : ""}
     </article>`,
     )
     .join("");

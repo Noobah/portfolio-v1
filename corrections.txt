@@ -1,0 +1,22 @@
+Improve my existing developer portfolio without changing its identity (dark theme, grid background, monospace labels, blue accent). Read the codebase first and match its stack.
+
+Deployment: GitHub Pages, so 100% static. No SSR or API routes. Handle base path/asset paths correctly, add .nojekyll, and add a GitHub Actions workflow to build and deploy.
+
+Fixes:
+- Navbar overlapping content in the Stack section (sticky + backdrop blur, correct z-index, scroll-margin on sections)
+- Stack cards stuck half-faded at the top
+- Dead space in project cards: fix layout or add one headline metric per project
+- Greeting should change by visitor's local time
+
+Polish (CSS and small hooks only, no heavy libraries):
+- Cursor spotlight glow on cards
+- Count-up animation for the Fastack metrics on scroll
+- Cmd/Ctrl+K command palette (sections, copy email, GitHub, LinkedIn, theme)
+- Simulated LLM token-streaming terminal in the hero (scripted, no backend)
+- Soft blue glow behind my photo
+
+Extras:
+- Open Graph tags with absolute URLs, sitemap, robots.txt
+- Make sure light theme looks as good as dark
+
+Rules: respect prefers-reduced-motion, keep it fast and responsive, keep editable content in one data file, and give me a short summary of changes at the end.

@@ -4,8 +4,56 @@ import { icons } from "./icons.js";
 const STORAGE_KEY = "theme";
 
 let audioContext;
+let noiseBuffer;
 
-/** Soft two-note chime + tiny switch tick — bright for light, warm for dark. */
+/** A short noise buffer used for the mechanical click transient. */
+function getNoiseBuffer(ctx) {
+  if (noiseBuffer) return noiseBuffer;
+
+  const length = Math.ceil(ctx.sampleRate * 0.08);
+  noiseBuffer = ctx.createBuffer(1, length, ctx.sampleRate);
+  const samples = noiseBuffer.getChannelData(0);
+  for (let i = 0; i < samples.length; i++) {
+    samples[i] = Math.random() * 2 - 1;
+  }
+  return noiseBuffer;
+}
+
+/** One physical-feeling click: sharp transient + short low thock. */
+function playSwitchClick(ctx, destination, time, { click, body, gain }) {
+  const noise = ctx.createBufferSource();
+  const bandpass = ctx.createBiquadFilter();
+  const noiseGain = ctx.createGain();
+
+  noise.buffer = getNoiseBuffer(ctx);
+  bandpass.type = "bandpass";
+  bandpass.frequency.setValueAtTime(click, time);
+  bandpass.Q.setValueAtTime(0.9, time);
+  noiseGain.gain.setValueAtTime(gain, time);
+  noiseGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.028);
+
+  noise.connect(bandpass);
+  bandpass.connect(noiseGain);
+  noiseGain.connect(destination);
+  noise.start(time);
+  noise.stop(time + 0.04);
+
+  const thock = ctx.createOscillator();
+  const thockGain = ctx.createGain();
+  thock.type = "triangle";
+  thock.frequency.setValueAtTime(body * 1.7, time);
+  thock.frequency.exponentialRampToValueAtTime(body, time + 0.025);
+  thockGain.gain.setValueAtTime(0.0001, time);
+  thockGain.gain.exponentialRampToValueAtTime(gain * 0.85, time + 0.004);
+  thockGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.1);
+
+  thock.connect(thockGain);
+  thockGain.connect(destination);
+  thock.start(time);
+  thock.stop(time + 0.12);
+}
+
+/** A hard, real-world switch: press click, release clack, and a low body. */
 function playThemeSound(theme) {
   try {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -15,57 +63,33 @@ function playThemeSound(theme) {
     if (audioContext.state === "suspended") audioContext.resume();
 
     const now = audioContext.currentTime;
+    const compressor = audioContext.createDynamicsCompressor();
     const master = audioContext.createGain();
-    const filter = audioContext.createBiquadFilter();
 
-    master.gain.setValueAtTime(0.0001, now);
-    master.gain.exponentialRampToValueAtTime(0.06, now + 0.012);
-    master.gain.exponentialRampToValueAtTime(0.0001, now + 0.26);
+    compressor.threshold.setValueAtTime(-18, now);
+    compressor.knee.setValueAtTime(8, now);
+    compressor.ratio.setValueAtTime(10, now);
+    compressor.attack.setValueAtTime(0.001, now);
+    compressor.release.setValueAtTime(0.09, now);
 
-    filter.type = "lowpass";
-    filter.frequency.setValueAtTime(2600, now);
-    filter.Q.value = 0.6;
+    master.gain.setValueAtTime(0.75, now);
+    master.connect(compressor);
+    compressor.connect(audioContext.destination);
 
-    master.connect(filter);
-    filter.connect(audioContext.destination);
+    const light = theme === "light";
+    const first = {
+      click: light ? 3100 : 2500,
+      body: light ? 190 : 150,
+      gain: 0.5,
+    };
+    const second = {
+      click: light ? 3900 : 3200,
+      body: light ? 160 : 125,
+      gain: 0.36,
+    };
 
-    // A soft root note plus a quiet fifth above it.
-    const notes = theme === "dark" ? [392, 587.33] : [659.25, 987.77];
-    notes.forEach((frequency, index) => {
-      const oscillator = audioContext.createOscillator();
-      const gain = audioContext.createGain();
-
-      oscillator.type = "sine";
-      oscillator.frequency.setValueAtTime(frequency, now);
-      gain.gain.setValueAtTime(index === 0 ? 0.9 : 0.2, now);
-
-      oscillator.connect(gain);
-      gain.connect(master);
-      oscillator.start(now);
-      oscillator.stop(now + 0.28);
-    });
-
-    // A very short filtered noise tick gives the switch a tactile feel.
-    const tick = audioContext.createBufferSource();
-    const tickLength = Math.ceil(audioContext.sampleRate * 0.012);
-    const buffer = audioContext.createBuffer(1, tickLength, audioContext.sampleRate);
-    const samples = buffer.getChannelData(0);
-    for (let i = 0; i < samples.length; i++) {
-      samples[i] = (Math.random() * 2 - 1) * (1 - i / samples.length);
-    }
-
-    const tickFilter = audioContext.createBiquadFilter();
-    const tickGain = audioContext.createGain();
-    tickFilter.type = "highpass";
-    tickFilter.frequency.setValueAtTime(1800, now);
-    tickGain.gain.setValueAtTime(0.03, now);
-    tickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
-
-    tick.buffer = buffer;
-    tick.connect(tickFilter);
-    tickFilter.connect(tickGain);
-    tickGain.connect(audioContext.destination);
-    tick.start(now);
+    playSwitchClick(audioContext, master, now, first);
+    playSwitchClick(audioContext, master, now + 0.055, second);
   } catch {
     /* audio is a nice-to-have; never block the theme switch */
   }
