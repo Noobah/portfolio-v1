@@ -3,7 +3,7 @@ import { initThemeToggle } from "./theme.js";
 import { icons } from "./icons.js";
 import { initCommandPalette } from "./palette.js";
 import { renderHero } from "./components/hero.js";
-import { renderExperience } from "./components/experience.js?v=20261030-13";
+import { renderExperience } from "./components/experience.js?v=20261030-14";
 import { renderProjects } from "./components/projects.js?v=20261030-12";
 import { renderTestimonials } from "./components/testimonials.js?v=20261030-12";
 import { renderStack } from "./components/stack.js";

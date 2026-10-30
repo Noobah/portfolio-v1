@@ -11,7 +11,7 @@ export function renderExperience(root, data) {
         .map(
           (m) => `
             <span class="chip metric-chip">
-              <span class="metric-value" data-count="${m.value}" data-suffix="${m.suffix}">0${m.suffix}</span>
+              <span class="metric-value" data-count="${m.value}" data-suffix="${m.suffix}">${m.value}${m.suffix}</span>
               <span class="metric-label">${m.label}</span>
             </span>`,
         )
