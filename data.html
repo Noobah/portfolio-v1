@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ravi Bhushan V | Full Stack Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #0e0e0e;
+        color: #fdfdfd;
+        overflow-x: hidden;
+      }
+
+      /* ── Typography ── */
+      .hero-title {
+        font-size: clamp(2.5rem, 10vw, 5rem);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      /* ── Cards ── */
+      .glass-card {
+        background: rgba(15, 23, 42, 0.3);
+        border: 1px solid rgba(51, 65, 85, 0.2);
+        backdrop-filter: blur(12px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ── Skills ── */
+      .skill-pill {
+        background: rgba(30, 41, 59, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+      }
+      .skill-pill:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(59, 130, 246, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* ── Status badge ── */
+      .status-dot {
+        animation: pulse-dot 2s infinite;
+      }
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(1.3);
+        }
+      }
+
+      /* ── Impact tag ── */
+      .impact-tag {
+        background: rgba(59, 130, 246, 0.08);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        color: #60a5fa;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 100px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* ── Section label ── */
+      .section-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: #475569;
+      }
+
+      /* ── Experience timeline ── */
+      .exp-item {
+        position: relative;
+        padding-left: 2rem;
+      }
+      .exp-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+      }
+      .exp-item::after {
+        content: "";
+        position: absolute;
+        left: 3.5px;
+        top: 20px;
+        width: 1px;
+        bottom: -20px;
+        background: linear-gradient(
+          to bottom,
+          rgba(59, 130, 246, 0.3),
+          transparent
+        );
+      }
+      .exp-item:last-child::after {
+        display: none;
+      }
+
+      /* ── Floating Nav ── */
+      #floating-nav {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+        z-index: 50;
+        pointer-events: none;
+      }
+      #floating-nav.visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
+      .nav-pill {
+        background: rgba(10, 15, 30, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 100px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      }
+      .nav-link {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #475569;
+        padding: 6px 14px;
+        border-radius: 100px;
+        transition: all 0.25s ease;
+        cursor: pointer;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .nav-link:hover {
+        color: #e2e8f0;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .nav-link.active {
+        color: #fff;
+        background: rgba(59, 130, 246, 0.25);
+        border: 1px solid rgba(59, 130, 246, 0.35);
+      }
+      .nav-divider {
+        width: 1px;
+        height: 14px;
+        background: rgba(255, 255, 255, 0.08);
+        flex-shrink: 0;
+      }
+      #back-top {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        flex-shrink: 0;
+        margin-left: 4px;
+      }
+      #back-top:hover {
+        background: rgba(59, 130, 246, 0.3);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-blue-600/30">
+    <!-- ════════════════════════════════════════
+         FLOATING NAV
+    ═════════════════════════════════════════ -->
+    <nav id="floating-nav" aria-label="Section navigation">
+      <div class="nav-pill">
+        <a href="#experience" class="nav-link" data-section="experience"
+          >Experience</a
+        >
+        <div class="nav-divider"></div>
+        <a href="#projects" class="nav-link" data-section="projects"
+          >Projects</a
+        >
+        <div class="nav-divider"></div>
+        <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+        <div class="nav-divider"></div>
+        <a href="#education" class="nav-link" data-section="education"
+          >Education</a
+        >
+        <div class="nav-divider"></div>
+        <button id="back-top" title="Back to top" aria-label="Back to top">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-3.5 h-3.5 text-blue-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-12 md:py-24">
+      <!-- ════════════════════════════════════════
+           HERO
+      ═════════════════════════════════════════ -->
+      <header id="hero" class="mb-24 md:mb-40">
+        <div
+          class="flex items-center gap-3 mb-8 text-[10px] md:text-xs font-bold tracking-[0.2em] text-green-500 uppercase">
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500 status-dot"></span>
+          Open to work
+        </div>
+
+        <div
+          class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12">
+          <div class="flex-1 order-2 lg:order-1 text-center lg:text-left">
+            <h1 class="hero-title font-extrabold text-white mb-6">
+              Ravi Bhushan V
+            </h1>
+
+            <p
+              class="text-lg md:text-2xl font-light text-slate-400 mb-4 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              Full-Stack Engineer &mdash;
+              <span class="text-white font-semibold"
+                >MERN &middot; TypeScript &middot; AI Systems</span
+              >
+            </p>
+
+            <p
+              class="text-sm text-slate-400 mb-3 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              I build scalable backend platforms, real-time APIs, and
+              LLM-powered products that ship fast and hold under pressure. At
+              Fastack Technologies, I shipped systems that cut client onboarding
+              by <span class="text-blue-400 font-semibold">87%</span> and
+              eliminated
+              <span class="text-blue-400 font-semibold">10+ hours/week</span> of
+              manual ops — from no-code workflow engines to LLM streaming
+              pipelines, all in production.
+            </p>
+            <p
+              class="text-sm text-slate-500 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              I work best at the intersection of backend systems and product
+              thinking — from architecture decisions to zero-downtime
+              deployments.
+            </p>
+
+            <!-- Links -->
+            <div
+              class="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-4 text-sm font-medium mb-8">
+              <a
+                href="mailto:rbhushan1122@gmail.com"
+                class="flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+                  class="w-4 h-4"
+                  alt="Email" />
+                Gmail
+              </a>
+              <a
+                href="https://github.com/ivarcodes"
+                target="_blank"
+                class="flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/733/733553.png"
+                  class="w-4 h-4 invert"
+                  alt="GitHub" />
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/ravibhushanv"
+                target="_blank"
+                class="flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  class="w-4 h-4"
+                  alt="LinkedIn" />
+                LinkedIn
+              </a>
+              <!-- UPDATE GOOGLE DRIVE LINK BELOW WITH YOUR NEW RESUME -->
+              <a
+                href="https://drive.google.com/file/d/13fDBy4ZFwMy8nQl_brfDBZAdpAqP3hZa/view?usp=sharing"
+                target="_blank"
+                class="flex items-center gap-2 bg-white text-black text-xs font-bold px-5 py-2 rounded-full hover:scale-105 transition-all">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2991/2991112.png"
+                  class="w-4 h-4"
+                  alt="Resume" />
+                Resume
+              </a>
+            </div>
+
+            <!-- CTA → Experience -->
+            <a
+              href="#experience"
+              class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors tracking-widest uppercase">
+              View My Work
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Photo -->
+          <div class="order-1 lg:order-2 shrink-0">
+            <div class="relative group">
+              <div
+                class="absolute -inset-1 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+              <img
+                src="https://lh3.googleusercontent.com/d/1iGgigIazLdAzkOlTBiIJxiYZDZhLVrji"
+                referrerpolicy="no-referrer"
+                alt="Ravi Bhushan V"
+                class="relative w-44 h-44 md:w-60 md:h-60 rounded-3xl object-cover border border-white/10 shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ════════════════════════════════════════
+           EXPERIENCE
+      ═════════════════════════════════════════ -->
+      <section id="experience" class="mb-32 scroll-mt-8">
+        <h2 class="section-label mb-12 flex items-center gap-4">
+          01. Experience <span class="h-px bg-slate-800 flex-1"></span>
+        </h2>
+
+        <div class="glass-card rounded-[2rem] overflow-hidden">
+          <!-- Company header -->
+          <div
+            class="p-8 md:p-10 border-b border-white/5 bg-gradient-to-br from-blue-500/5 to-transparent">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+              <div>
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-1">
+                  Fastack Technologies
+                </h3>
+                <p class="text-blue-400 font-mono text-sm italic">
+                  Full Stack Engineer
+                </p>
+              </div>
+              <span
+                class="text-[10px] font-mono font-bold text-slate-500 bg-slate-900/80 px-4 py-2 rounded-full border border-white/5 uppercase shrink-0">
+                Mar 2025 &mdash; Mar 2026
+              </span>
+            </div>
+            <!-- Impact strip -->
+            <div class="flex flex-wrap gap-2">
+              <span class="impact-tag">87% faster onboarding</span>
+              <span class="impact-tag">40% lower latency</span>
+              <span class="impact-tag">10+ hrs/week saved</span>
+              <span class="impact-tag">98% delivery reliability</span>
+            </div>
+          </div>
+
+          <!-- Timeline of projects -->
+          <div class="p-8 md:p-10 space-y-10">
+            <!-- Whasta -->
+            <div class="exp-item">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <h4 class="text-white font-bold text-base">
+                      Whasta Automation
+                    </h4>
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-blue-600/10 text-blue-400 rounded border border-blue-500/20 uppercase"
+                      >No-Code Platform</span
+                    >
+                  </div>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-3">
+                    Architected a no-code workflow automation platform using
+                    <span class="text-slate-200">React Flow + Node.js</span>,
+                    enabling non-technical users to configure end-to-end
+                    business logic independently — cutting client onboarding
+                    time by
+                    <span class="text-blue-400 font-semibold">87%</span> and
+                    eliminating developer dependency entirely.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >React Flow</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >Node.js</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >REST APIs</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >Event-Driven</span
+                    >
+                  </div>
+                </div>
+                <div class="shrink-0 text-right hidden sm:block">
+                  <span
+                    class="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full"
+                    >87% faster</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Docsync -->
+            <div class="exp-item">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <h4 class="text-white font-bold text-base">
+                      Docsync Engine
+                    </h4>
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-purple-600/10 text-purple-400 rounded border border-purple-500/20 uppercase"
+                      >Data Sync</span
+                    >
+                  </div>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-3">
+                    Built a bidirectional sync bridge between
+                    <span class="text-slate-200"
+                      >Tally Prime (XML) and Odoo</span
+                    >
+                    using Python/Django, eliminating
+                    <span class="text-blue-400 font-semibold"
+                      >10+ hours/week</span
+                    >
+                    of manual financial reconciliation and reducing reporting
+                    errors across client operations.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >Python</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >Django</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >XML Parsing</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >Odoo API</span
+                    >
+                  </div>
+                </div>
+                <div class="shrink-0 text-right hidden sm:block">
+                  <span
+                    class="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full"
+                    >10+ hrs saved</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- LucaGPT -->
+            <div class="exp-item">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <h4 class="text-white font-bold text-base">
+                      LucaGPT Mobile
+                    </h4>
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-cyan-600/10 text-cyan-400 rounded border border-cyan-500/20 uppercase"
+                      >AI / LLM</span
+                    >
+                  </div>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-3">
+                    Optimized LLM streaming pipelines via
+                    <span class="text-slate-200">SSE and request batching</span
+                    >, achieving a
+                    <span class="text-blue-400 font-semibold"
+                      >40% reduction in time-to-first-token</span
+                    >
+                    and significantly improving perceived responsiveness on
+                    mobile.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >SSE</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >LLM Streaming</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >Node.js</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >React Native</span
+                    >
+                  </div>
+                </div>
+                <div class="shrink-0 text-right hidden sm:block">
+                  <span
+                    class="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full"
+                    >40% faster</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Solocrane -->
+            <div class="exp-item">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <h4 class="text-white font-bold text-base">Solocrane</h4>
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-green-600/10 text-green-400 rounded border border-green-500/20 uppercase"
+                      >Integrations</span
+                    >
+                  </div>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-3">
+                    Integrated
+                    <span class="text-slate-200">WhatsApp Cloud API</span> with
+                    OAuth 2.0 and exponential retry logic, achieving
+                    <span class="text-blue-400 font-semibold"
+                      >98% notification delivery reliability</span
+                    >
+                    with zero unauthorized-access incidents post-launch.
+                  </p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >WhatsApp API</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >OAuth 2.0</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >RBAC</span
+                    >
+                    <span
+                      class="text-[9px] font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded text-slate-400 uppercase"
+                      >Retry Logic</span
+                    >
+                  </div>
+                </div>
+                <div class="shrink-0 text-right hidden sm:block">
+                  <span
+                    class="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full"
+                    >98% reliable</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /timeline -->
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════
+           PROJECTS
+      ═════════════════════════════════════════ -->
+      <section id="projects" class="mb-32 scroll-mt-8">
+        <h2 class="section-label mb-12 flex items-center gap-4">
+          02. Projects <span class="h-px bg-slate-800 flex-1"></span>
+        </h2>
+        <div class="space-y-6">
+          <!-- StudyBuddy -->
+          <div
+            class="glass-card p-8 md:p-10 rounded-[2rem] hover:border-blue-500/30 transition-all">
+            <div class="flex flex-col lg:flex-row justify-between gap-8">
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-3 mb-3">
+                  <h3 class="text-2xl md:text-3xl font-bold text-white">
+                    StudyBuddy
+                  </h3>
+                  <span
+                    class="text-[9px] font-bold px-2 py-0.5 bg-blue-600/10 text-blue-400 rounded border border-blue-500/20 uppercase"
+                    >AI EdTech</span
+                  >
+                </div>
+                <div class="space-y-2 mb-5 text-sm leading-relaxed">
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Problem</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Students have no structured way to turn vague goals into
+                      actionable, day-by-day plans.</span
+                    >
+                  </p>
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Solution</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Real-time AI tutor using
+                      <span class="text-white">Llama-3 via Groq</span> with SSE
+                      streaming — generates personalized roadmaps token-by-token
+                      with MongoDB-backed cross-device session
+                      persistence.</span
+                    >
+                  </p>
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Impact</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Measurably higher engagement vs. static resources.
+                      JWT-secured with protected routes and persistent
+                      login.</span
+                    >
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >Next.js</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >Groq AI</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >MongoDB</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >SSE</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >JWT</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-row lg:flex-col gap-3 lg:items-end">
+                <a
+                  href="https://studybuddy-sigma-rose.vercel.app/"
+                  target="_blank"
+                  class="h-fit px-6 py-2.5 bg-white text-black text-xs font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all uppercase text-center whitespace-nowrap"
+                  >Live Demo</a
+                >
+                <a
+                  href="https://github.com/ivarcodes/studybuddy"
+                  target="_blank"
+                  class="h-fit px-6 py-2.5 border border-white/10 text-white text-xs font-bold rounded-xl hover:bg-white/10 transition-all uppercase text-center whitespace-nowrap"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- SentriX -->
+          <div
+            class="glass-card p-8 md:p-10 rounded-[2rem] hover:border-red-500/30 transition-all">
+            <div class="flex flex-col lg:flex-row justify-between gap-8">
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-3 mb-3">
+                  <h3 class="text-2xl md:text-3xl font-bold text-white">
+                    SentriX
+                  </h3>
+                  <span
+                    class="text-[9px] font-bold px-2 py-0.5 bg-red-600/10 text-red-400 rounded border border-red-500/20 uppercase"
+                    >Security</span
+                  >
+                </div>
+                <div class="space-y-2 mb-5 text-sm leading-relaxed">
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Problem</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Large Discord communities are vulnerable to coordinated
+                      raids with no fast automated response.</span
+                    >
+                  </p>
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Solution</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Event-driven moderation bot with
+                      <span class="text-white"
+                        >&lt;100ms raid detection latency</span
+                      >, per-server configurable rule sets, and a custom command
+                      handler reducing memory overhead by 25%.</span
+                    >
+                  </p>
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Impact</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Zero manual restarts — deployable with a single command.
+                      SQLite-backed per-guild config persists across
+                      reboots.</span
+                    >
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >Node.js</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >Discord.js</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >SQLite</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >Event-Driven</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-row lg:flex-col gap-3 lg:items-end">
+                <a
+                  href="https://sentrix-pm8s.onrender.com"
+                  target="_blank"
+                  class="h-fit px-6 py-2.5 bg-white text-black text-xs font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all uppercase text-center whitespace-nowrap"
+                  >Live Demo</a
+                >
+                <a
+                  href="https://github.com/ivarcodes/sentrix"
+                  target="_blank"
+                  class="h-fit px-6 py-2.5 border border-white/10 text-white text-xs font-bold rounded-xl hover:bg-white/10 transition-all uppercase text-center whitespace-nowrap"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Unifetch -->
+          <div
+            class="glass-card p-8 md:p-10 rounded-[2rem] hover:border-green-500/30 transition-all">
+            <div class="flex flex-col lg:flex-row justify-between gap-8">
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-3 mb-3">
+                  <h3 class="text-2xl md:text-3xl font-bold text-white">
+                    Unifetch
+                  </h3>
+                  <span
+                    class="text-[9px] font-bold px-2 py-0.5 bg-green-600/10 text-green-400 rounded border border-green-500/20 uppercase"
+                    >Browser Extension</span
+                  >
+                </div>
+                <div class="space-y-2 mb-5 text-sm leading-relaxed">
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Problem</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Developers waste time manually extracting assets from web
+                      pages during audits and development.</span
+                    >
+                  </p>
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Solution</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Manifest V3 Firefox extension with intelligent
+                      <span class="text-white">DOM traversal</span> for
+                      one-click bulk asset extraction — zero external
+                      dependencies.</span
+                    >
+                  </p>
+                  <p>
+                    <span
+                      class="text-slate-500 font-bold uppercase text-[9px] tracking-widest"
+                      >Impact</span
+                    ><br />
+                    <span class="text-slate-400"
+                      >Live on the Firefox Add-ons Marketplace with real users.
+                      Demonstrates browser API depth beyond typical full-stack
+                      work.</span
+                    >
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >JavaScript</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >Manifest V3</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-300 uppercase tracking-wider"
+                    >DOM API</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-row lg:flex-col gap-3 lg:items-end">
+                <a
+                  href="https://addons.mozilla.org/en-US/firefox/addon/unifetch/"
+                  target="_blank"
+                  class="h-fit px-6 py-2.5 bg-white text-black text-xs font-bold rounded-xl hover:bg-green-600 hover:text-white transition-all uppercase text-center whitespace-nowrap"
+                  >Marketplace</a
+                >
+                <a
+                  href="https://github.com/ivarcodes"
+                  target="_blank"
+                  class="h-fit px-6 py-2.5 border border-white/10 text-white text-xs font-bold rounded-xl hover:bg-white/10 transition-all uppercase text-center whitespace-nowrap"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════
+           SKILLS
+      ═════════════════════════════════════════ -->
+      <section id="skills" class="mb-32 scroll-mt-8">
+        <h2 class="section-label mb-12 flex items-center gap-4">
+          03. Skills <span class="h-px bg-slate-800 flex-1"></span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
+          <!-- Frontend -->
+          <div>
+            <h3
+              class="text-white font-bold text-xs mb-6 uppercase tracking-widest flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>Frontend
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=react"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >React</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=nextjs"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Next.js</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=ts"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >TypeScript</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=javascript"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >JavaScript</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=tailwind"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Tailwind</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=redux"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Redux</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div>
+            <h3
+              class="text-white font-bold text-xs mb-6 uppercase tracking-widest flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span
+              >Backend
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=nodejs"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Node.js</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=express"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Express</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=python"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Python</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=django"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Django</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=mongodb"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >MongoDB</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=redis"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Redis</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=postgresql"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Postgres</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=firebase"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Firebase</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- AI / GenAI -->
+          <div>
+            <h3
+              class="text-white font-bold text-xs mb-6 uppercase tracking-widest flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>AI /
+              GenAI
+            </h3>
+            <div class="grid grid-cols-1 gap-3">
+              <div
+                class="skill-pill p-2.5 px-4 rounded-xl flex items-center gap-3">
+                <span class="text-cyan-400 text-base font-black leading-none"
+                  >⬡</span
+                ><span class="text-[10px] font-bold text-slate-300 uppercase"
+                  >OpenAI API</span
+                >
+              </div>
+              <div
+                class="skill-pill p-2.5 px-4 rounded-xl flex items-center gap-3">
+                <span class="text-cyan-400 text-base font-black leading-none"
+                  >⬡</span
+                ><span class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Anthropic Claude</span
+                >
+              </div>
+              <div
+                class="skill-pill p-2.5 px-4 rounded-xl flex items-center gap-3">
+                <span class="text-cyan-400 text-base font-black leading-none"
+                  >⬡</span
+                ><span class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Groq / Llama-3</span
+                >
+              </div>
+              <div
+                class="skill-pill p-2.5 px-4 rounded-xl flex items-center gap-3">
+                <span class="text-cyan-400 text-base font-black leading-none"
+                  >⬡</span
+                ><span class="text-[10px] font-bold text-slate-300 uppercase"
+                  >LLM Streaming</span
+                >
+              </div>
+              <div
+                class="skill-pill p-2.5 px-4 rounded-xl flex items-center gap-3">
+                <span class="text-cyan-400 text-base font-black leading-none"
+                  >⬡</span
+                ><span class="text-[10px] font-bold text-slate-300 uppercase"
+                  >SSE / WebSockets</span
+                >
+              </div>
+              <div
+                class="skill-pill p-2.5 px-4 rounded-xl flex items-center gap-3">
+                <span class="text-cyan-400 text-base font-black leading-none"
+                  >⬡</span
+                ><span class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Prompt Engineering</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- DevOps -->
+          <div>
+            <h3
+              class="text-white font-bold text-xs mb-6 uppercase tracking-widest flex items-center gap-2">
+              <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>DevOps
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=git"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Git</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=github"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >GitHub</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=vercel"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Vercel</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=render"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Render</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=docker"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Docker</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=linux"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Linux</span
+                >
+              </div>
+              <div class="skill-pill p-2 rounded-xl flex items-center gap-3">
+                <img
+                  src="https://skillicons.dev/icons?i=postman"
+                  class="w-6 h-6"
+                  alt="" /><span
+                  class="text-[10px] font-bold text-slate-300 uppercase"
+                  >Postman</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════
+           EDUCATION
+      ═════════════════════════════════════════ -->
+      <section id="education" class="mb-20 scroll-mt-8">
+        <h2 class="section-label mb-12 flex items-center gap-4">
+          04. Education <span class="h-px bg-slate-800 flex-1"></span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="glass-card p-8 rounded-3xl border-white/5">
+            <h4 class="text-lg font-bold text-white mb-1">
+              Master of Computer Applications
+            </h4>
+            <p class="text-xs text-slate-500 uppercase mb-4 tracking-tighter">
+              Sikkim Manipal University
+            </p>
+            <span
+              class="text-[10px] font-mono text-blue-500 bg-blue-500/5 px-3 py-1 rounded-full border border-blue-500/10 uppercase tracking-tighter"
+              >2025 &mdash; Present</span
+            >
+          </div>
+          <div class="glass-card p-8 rounded-3xl border-white/5 opacity-80">
+            <h4 class="text-lg font-bold text-white mb-1">
+              Bachelor of Computer Applications
+            </h4>
+            <p class="text-xs text-slate-500 uppercase mb-4 tracking-tighter">
+              DG Vaishnav College, Chennai
+            </p>
+            <span
+              class="text-[10px] font-mono text-slate-500 bg-white/5 px-3 py-1 rounded-full border border-white/5 uppercase tracking-tighter"
+              >2021 &mdash; 2024</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════
+           FOOTER
+      ═════════════════════════════════════════ -->
+      <footer class="text-center pt-12 border-t border-white/5">
+        <p
+          class="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-600">
+          Ravi Bhushan V &copy; 2026
+        </p>
+      </footer>
+    </div>
+    <!-- /max-w wrapper -->
+
+    <!-- ════════════════════════════════════════
+         FLOATING NAV SCRIPT
+    ═════════════════════════════════════════ -->
+    <script>
+      const nav = document.getElementById("floating-nav");
+      const backTop = document.getElementById("back-top");
+      const sections = ["experience", "projects", "skills", "education"];
+      const navLinks = document.querySelectorAll(".nav-link[data-section]");
+      const heroBottom = () =>
+        document.getElementById("hero").getBoundingClientRect().bottom +
+        window.scrollY;
+
+      // Show/hide nav after hero
+      function updateNavVisibility() {
+        if (window.scrollY > heroBottom() - 100) {
+          nav.classList.add("visible");
+        } else {
+          nav.classList.remove("visible");
+        }
+      }
+
+      // Highlight active section
+      function updateActiveLink() {
+        let current = "";
+        sections.forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (window.scrollY >= el.offsetTop - 120) current = id;
+        });
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.dataset.section === current);
+        });
+      }
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          updateNavVisibility();
+          updateActiveLink();
+        },
+        { passive: true },
+      );
+
+      // Back to top
+      backTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Init
+      updateNavVisibility();
+      updateActiveLink();
+    </script>
+  </body>
+</html>

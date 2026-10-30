@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" id="meta-description" />
+    <title>Ravi Bhushan V | Full Stack Engineer</title>
+
+    <!-- Theme: applied before paint to avoid flash -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "light" && t !== "dark") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          }
+          document.documentElement.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Sticky header -->
+    <header id="site-header" class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="brand-mark" aria-hidden="true">RB</span>
+          <span class="brand-name">ravi<span class="brand-dot">.dev</span></span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Primary"></nav>
+        <div class="header-actions">
+          <button
+            id="theme-toggle"
+            class="icon-btn"
+            type="button"
+            aria-label="Toggle theme"></button>
+          <a
+            id="header-github"
+            class="icon-btn"
+            href="#"
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="GitHub profile"></a>
+          <button
+            id="nav-toggle"
+            class="icon-btn nav-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"></button>
+        </div>
+      </div>
+      <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+      <div class="mobile-nav" id="mobile-nav" hidden></div>
+    </header>
+
+    <main id="main" class="container">
+      <!-- Components mount here (rendered from data.js) -->
+      <section class="panel" id="hero-panel"></section>
+      <section class="panel" id="numbers-panel"></section>
+      <section class="panel" id="hello-panel"></section>
+      <section class="panel" id="experience-panel"></section>
+      <section class="panel" id="projects-panel"></section>
+      <section class="panel" id="stack-panel"></section>
+      <section class="panel" id="education-panel"></section>
+      <section class="panel" id="contact-panel"></section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p id="footer-copy"></p>
+        <button id="back-to-top" class="text-btn" type="button">
+          Back to top ↑
+        </button>
+      </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
