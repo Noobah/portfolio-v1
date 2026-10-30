@@ -3,10 +3,9 @@ import { initThemeToggle } from "./theme.js";
 import { icons } from "./icons.js";
 import { initCommandPalette } from "./palette.js";
 import { renderHero } from "./components/hero.js";
-import { renderHello } from "./components/hello.js";
-import { renderExperience } from "./components/experience.js?v=20261030-11";
-import { renderProjects } from "./components/projects.js?v=20261030-11";
-import { renderTestimonials } from "./components/testimonials.js";
+import { renderExperience } from "./components/experience.js?v=20261030-13";
+import { renderProjects } from "./components/projects.js?v=20261030-12";
+import { renderTestimonials } from "./components/testimonials.js?v=20261030-12";
 import { renderStack } from "./components/stack.js";
 import { renderEducation } from "./components/education.js";
 import { renderContact } from "./components/contact.js";
@@ -22,7 +21,6 @@ document.getElementById("meta-description").content = data.meta.description;
 
 // ── Header / nav ───────────────────────────────────────────
 const NAV_ITEMS = [
-  { label: "About", href: "#hello-panel" },
   { label: "Experience", href: "#experience-panel" },
   { label: "Projects", href: "#projects-panel" },
   { label: "Stack", href: "#stack-panel" },
@@ -64,7 +62,6 @@ initThemeToggle(document.getElementById("theme-toggle"));
 
 // ── Sections ───────────────────────────────────────────────
 renderHero(document.getElementById("hero-panel"), data);
-renderHello(document.getElementById("hello-panel"), data);
 renderExperience(document.getElementById("experience-panel"), data);
 renderProjects(document.getElementById("projects-panel"), data);
 renderTestimonials(document.getElementById("testimonials-panel"), data);

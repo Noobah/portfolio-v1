@@ -19,11 +19,11 @@ window.PORTFOLIO = {
     role: "Full Stack Engineer",
     focus: "MERN · TypeScript · AI Systems",
     status: "Open to work",
-    currentlyBuilding: "an event-driven WhatsApp automation layer",
+    location: "Chennai, India",
+    phone: "+91 82205 76536",
     avatar: "assets/avatar.jpg",
     bio: [
       "I build scalable backend platforms, real-time APIs, and LLM-powered products that ship fast and hold under pressure. At Fastack Technologies, I shipped systems that cut client onboarding by 87% and eliminated 10+ hours/week of manual ops — from no-code workflow engines to LLM streaming pipelines, all in production.",
-      "I work best at the intersection of backend systems and product thinking — from architecture decisions to zero-downtime deployments.",
     ],
     resumeUrl:
       "https://drive.google.com/file/d/13fDBy4ZFwMy8nQl_brfDBZAdpAqP3hZa/view?usp=sharing",
@@ -45,8 +45,8 @@ window.PORTFOLIO = {
   experience: [
     {
       company: "Fastack Technologies",
-      logo: "https://fastack.ai/wp-content/uploads/2023/08/Fastack_logo_white_118x30px.png",
       role: "Full Stack Engineer",
+      location: "Chennai, India",
       period: "Mar 2025 — Mar 2026",
       /** Structured so the pills can count up on scroll. */
       metrics: [
@@ -203,23 +203,46 @@ window.PORTFOLIO = {
     },
   ],
 
-  /** TODO: replace these two placeholders with real quotes and names. */
+  /** Real reviews from the Unifetch Firefox Add-ons listing. */
   testimonials: [
     {
-      quote:
-        "Ravi turns ambiguous operational problems into systems the team can actually run. The workflow platform he built removed a recurring developer bottleneck for us.",
-      name: "Reference available on request",
-      role: "Operations lead, Fastack Technologies",
-      initials: "01",
-      placeholder: true,
+      quote: "Does what it advertises perfectly!",
+      name: "Vanier",
+      role: "Firefox Add-ons review",
+      initials: "V",
+      product: "UniFetch",
+      reviewedAt: "Oct 30, 2026 · 10:44 PM",
+      reviewUrl: "https://addons.mozilla.org/en-US/firefox/addon/unifetch/reviews/2779226/",
     },
     {
       quote:
-        "He is unusually good at the backend details that make a product feel fast — streaming, retries, observability — without losing sight of the user experience.",
-      name: "Reference available on request",
-      role: "Engineering manager, product team",
-      initials: "02",
-      placeholder: true,
+        "Works pretty well. Grabs everything off a page fast. No ads, no fuss. Solid 4 stars.",
+      name: "Pixel Neon",
+      role: "Firefox Add-ons review",
+      initials: "PN",
+      product: "UniFetch",
+      reviewedAt: "Apr 27, 2026 · 11:10 AM",
+      reviewUrl: "https://addons.mozilla.org/en-US/firefox/addon/unifetch/reviews/2707862/",
+    },
+    {
+      quote:
+        "I have been using this extension for a long time. It's excellent, and I have built many projects and completed my work quickly thanks to Creator.",
+      name: "wrench",
+      role: "Firefox Add-ons review",
+      initials: "W",
+      product: "UniFetch",
+      reviewedAt: "Apr 27, 2026 · 10:19 AM",
+      reviewUrl: "https://addons.mozilla.org/en-US/firefox/addon/unifetch/reviews/2707852/",
+    },
+    {
+      quote:
+        "This extension is really very helpful as it lets you collect images, videos, PDFs, fonts and other files from a website in one place. You can preview items and download selected files easily. It is small, simple to use and works as expected.",
+      name: "Firefox user 19770907",
+      role: "Firefox Add-ons review",
+      initials: "FU",
+      product: "UniFetch",
+      reviewedAt: "Mar 3, 2026 · 1:47 PM",
+      reviewUrl: "https://addons.mozilla.org/en-US/firefox/addon/unifetch/reviews/2601293/",
     },
   ],
 

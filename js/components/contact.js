@@ -41,6 +41,10 @@ export function renderContact(root, data) {
             <span>${email}</span>
             <span class="contact-arrow" aria-hidden="true">${icons.arrowUpRight}</span>
           </a>
+          <a class="contact-email contact-phone" href="tel:+918220576536">
+            <span>${data.profile.phone}</span>
+            <span class="contact-arrow" aria-hidden="true">${icons.arrowUpRight}</span>
+          </a>
           <div class="contact-row">
             <button class="copy-btn" type="button" data-copy-email aria-live="polite">
               ${icons.copy}

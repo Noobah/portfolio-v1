@@ -22,11 +22,11 @@ Open <http://localhost:4173>. Opening `index.html` directly also works in Firefo
 
 Open `data.js`. The important blocks are:
 
-- `profile` — name, role, bio, photo, resume link, "Currently building" line
+- `profile` — name, role, bio, photo, and resume link
 - `socials` — email, GitHub, LinkedIn
 - `experience` — company, logo, metrics, project timeline, Whasta architecture diagram
 - `projects` — StudyBuddy, SentriX, Unifetch case studies + media slots
-- `testimonials` — **placeholder content, replace before publishing**
+- `testimonials` — reviews copied from the Unifetch Firefox Add-ons listing
 - `stack` — categories and items
 - `education` — degrees and one-line highlights
 
@@ -46,10 +46,6 @@ media: {
 
 For a looping video, use `type: "video"`, `src: "assets/demo.mp4"`, and an optional `poster`.
 
-### Company logo
-
-Set `logo` on an experience entry to use a wordmark instead of the initial badge. Omit it to fall back to the company initial. The Fastack mark is a white PNG, so it sits on a dark tile in both themes.
-
 ## Deployment
 
 The workflow at `.github/workflows/deploy.yml` publishes the repo to GitHub Pages on every push to `main`.
@@ -62,8 +58,6 @@ The workflow at `.github/workflows/deploy.yml` publishes the repo to GitHub Page
 
 ## Before publishing
 
-- Replace the two placeholder testimonials in `data.js`.
 - Add real screenshots or demo videos for StudyBuddy, SentriX, and Unifetch.
-- Update the "Currently building" line.
 - Regenerate `assets/og.png` if the name/tagline changes.
 - Confirm the resume URL is publicly accessible.

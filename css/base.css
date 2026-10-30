@@ -34,6 +34,18 @@
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.06);
 }
 
+html.theme-transitioning,
+html.theme-transitioning body,
+html.theme-transitioning * {
+  transition:
+    color 420ms ease,
+    border-color 420ms ease,
+    box-shadow 420ms ease,
+    text-decoration-color 420ms ease,
+    fill 420ms ease,
+    stroke 420ms ease !important;
+}
+
 [data-theme="dark"] {
   color-scheme: dark;
   --background: #0b0b0c;

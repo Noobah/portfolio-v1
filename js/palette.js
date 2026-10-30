@@ -12,7 +12,6 @@ export function initCommandPalette({ data, toggleButton }) {
     "https://linkedin.com";
 
   const sections = [
-    ["About", "#hello-panel", "01"],
     ["Experience", "#experience-panel", "02"],
     ["Projects", "#projects-panel", "03"],
     ["Testimonials", "#testimonials-panel", "04"],

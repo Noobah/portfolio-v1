@@ -24,16 +24,9 @@ export function renderHero(root, data) {
   root.innerHTML = `
     <div class="hero">
       <div class="hero-copy">
-        <p class="hero-eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Portfolio — 2026</p>
-        <p class="hero-now">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span class="hero-now-label">Currently building:</span>
-          <strong>${profile.currentlyBuilding}</strong>
-        </p>
         <h1 class="hero-name">
           <span>${firstName}</span>
           <span class="hero-name-rest">${rest.join(" ")}</span>
-          <span class="verified" title="Verified human" aria-label="Verified">${icons.verified}</span>
         </h1>
         <p class="hero-role">
           ${profile.role}
@@ -43,7 +36,7 @@ export function renderHero(root, data) {
 
         <span class="hero-status">
           <span class="status-dot" aria-hidden="true"></span>
-          ${profile.status}
+          ${profile.status} · ${profile.location}
         </span>
 
         <div class="hero-bio">
@@ -51,8 +44,12 @@ export function renderHero(root, data) {
         </div>
 
         <div class="socials">
+          <a class="social-btn phone-btn" href="tel:+918220576536">
+            ${icons.phone}
+            <span>${profile.phone}</span>
+          </a>
           ${socialsHtml}
-          <a class="social-btn primary" href="${profile.resumeUrl}" target="_blank" rel="noreferrer noopener">
+          <a class="social-btn resume-btn" href="${profile.resumeUrl}" target="_blank" rel="noreferrer noopener">
             ${icons.file}
             <span>Resume</span>
           </a>

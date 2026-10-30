@@ -2,9 +2,12 @@
 import { icons } from "./icons.js";
 
 const STORAGE_KEY = "theme";
+const THEME_TRANSITION_CLASS = "theme-transitioning";
+const THEME_TRANSITION_DURATION = 420;
 
 let audioContext;
 let noiseBuffer;
+let themeTransitionTimer;
 
 /** A short noise buffer used for the mechanical click transient. */
 function getNoiseBuffer(ctx) {
@@ -100,6 +103,15 @@ export function getTheme() {
 }
 
 export function setTheme(theme) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion) {
+    window.clearTimeout(themeTransitionTimer);
+    document.documentElement.classList.add(THEME_TRANSITION_CLASS);
+    themeTransitionTimer = window.setTimeout(
+      () => document.documentElement.classList.remove(THEME_TRANSITION_CLASS),
+      THEME_TRANSITION_DURATION,
+    );
+  }
   document.documentElement.dataset.theme = theme;
   try {
     localStorage.setItem(STORAGE_KEY, theme);
