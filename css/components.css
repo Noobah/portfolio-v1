@@ -594,6 +594,7 @@
 
 .exp-project {
   position: relative;
+  min-width: 0;
   transition: border-color var(--speed) ease;
 }
 
