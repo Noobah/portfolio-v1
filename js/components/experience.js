@@ -36,10 +36,16 @@ export function renderExperience(root, data) {
         )
         .join("");
 
+      const mark = job.logo
+        ? `<span class="exp-company-mark exp-company-mark--logo" aria-hidden="true">
+            <img src="${job.logo}" alt="" width="118" height="30" loading="lazy" decoding="async" />
+          </span>`
+        : `<span class="exp-company-mark" aria-hidden="true">${job.company.charAt(0)}</span>`;
+
       return `
       <div>
         <div class="exp-company">
-          <span class="exp-company-mark" aria-hidden="true">${job.company.charAt(0)}</span>
+          ${mark}
           <div class="exp-company-info">
             <h3 class="exp-company-name">${job.company}</h3>
             <div class="exp-role">${job.role}</div>

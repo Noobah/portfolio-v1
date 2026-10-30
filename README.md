@@ -24,7 +24,7 @@ Open `data.js`. The important blocks are:
 
 - `profile` — name, role, bio, photo, resume link, "Currently building" line
 - `socials` — email, GitHub, LinkedIn
-- `experience` — company, metrics, project timeline, Whasta architecture diagram
+- `experience` — company, logo, metrics, project timeline, Whasta architecture diagram
 - `projects` — StudyBuddy, SentriX, Unifetch case studies + media slots
 - `testimonials` — **placeholder content, replace before publishing**
 - `stack` — categories and items
@@ -32,18 +32,23 @@ Open `data.js`. The important blocks are:
 
 ### Replacing project media
 
-Each project has a `media` object. Add a screenshot to `assets/` and set:
+Each project has a `media` object. The repo ships with wireframe previews in
+`assets/*-preview.svg`; replace the `src` with a real screenshot when you have one:
 
 ```js
 media: {
   type: "image",
-  src: "assets/studybudddy.png",
+  src: "assets/studybuddy-preview.svg",
   alt: "StudyBuddy roadmap interface",
   note: "",
 }
 ```
 
 For a looping video, use `type: "video"`, `src: "assets/demo.mp4"`, and an optional `poster`.
+
+### Company logo
+
+Set `logo` on an experience entry to use a wordmark instead of the initial badge. Omit it to fall back to the company initial. The Fastack mark is a white PNG, so it sits on a dark tile in both themes.
 
 ## Deployment
 

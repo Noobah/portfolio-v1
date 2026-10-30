@@ -498,6 +498,21 @@
   font-weight: 600;
 }
 
+/* Keep the white Fastack wordmark legible in both themes. */
+.exp-company-mark--logo {
+  width: 7rem;
+  height: 2.75rem;
+  padding: 0.5rem 0.7rem;
+  border-color: var(--line);
+  background: #0b0b0c;
+}
+
+.exp-company-mark--logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .exp-company-info {
   min-width: 0;
 }
@@ -797,21 +812,70 @@
   transform: scale(1.15);
 }
 
+/* Real preview art replaces the decorative grid and monogram. */
+.project-visual--media::before {
+  display: none;
+}
+
+.project-visual--media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.42),
+    transparent 28%,
+    transparent 72%,
+    rgba(0, 0, 0, 0.34)
+  );
+  transform: none;
+  pointer-events: none;
+}
+
+.project-card:hover .project-visual--media::after {
+  transform: none;
+}
+
+.project-visual-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s var(--ease);
+}
+
+.project-card:hover .project-visual-img,
+.project-card.is-hovered .project-visual-img {
+  transform: scale(1.04);
+}
+
 .project-index {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  z-index: 1;
+  z-index: 2;
   font-family: var(--font-mono);
   font-size: 0.5625rem;
   color: var(--muted-soft);
+}
+
+.project-visual--media .project-index {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .project-tag {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  z-index: 1;
+  z-index: 2;
   background: color-mix(in srgb, var(--card) 80%, transparent);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -958,8 +1022,8 @@
   transform: none;
 }
 
-/* The hover preview is a quick read; the full case study opens on click. */
-.project-card.is-hovered:not(.is-open) .project-media--placeholder {
+/* The hover preview is a quick read; media waits for the full case study. */
+.project-card.is-hovered:not(.is-open) .project-media {
   display: none;
 }
 
@@ -1049,7 +1113,13 @@
   overflow: hidden;
 }
 
-.project-media img,
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--line-soft);
+}
+
 .project-media video {
   display: block;
   width: 100%;

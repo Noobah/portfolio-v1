@@ -7,13 +7,19 @@ export function renderProjects(root, data) {
       const index = String(i + 1).padStart(2, "0");
       const detailsId = `project-details-${i}`;
       const monogram = p.monogram ?? p.name.slice(0, 2).toUpperCase();
+      const visualSrc =
+        p.media?.type === "video" ? p.media.poster : p.media?.src;
 
       return `
     <article class="project-card spotlight" data-spotlight style="--project-accent: ${p.accent ?? "var(--accent)"}">
-      <div class="project-visual" aria-hidden="true">
+      <div class="project-visual${visualSrc ? " project-visual--media" : ""}" aria-hidden="true">
         <span class="project-index">${index}</span>
         <span class="tag project-tag">${p.tag}</span>
-        <span class="project-monogram">${monogram}</span>
+        ${
+          visualSrc
+            ? `<img class="project-visual-img" src="${visualSrc}" alt="" loading="lazy" decoding="async" width="1000" height="1000" />`
+            : `<span class="project-monogram">${monogram}</span>`
+        }
       </div>
 
       <div class="project-content">
@@ -108,7 +114,7 @@ function renderMedia(project, index) {
   if (src) {
     return `
       <figure class="project-media">
-        <img src="${src}" alt="${alt}" loading="lazy" decoding="async" width="640" height="360" />
+        <img src="${src}" alt="${alt}" loading="lazy" decoding="async" width="1000" height="1000" />
         <figcaption>${alt}</figcaption>
       </figure>`;
   }

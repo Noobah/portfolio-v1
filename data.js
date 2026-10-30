@@ -45,6 +45,7 @@ window.PORTFOLIO = {
   experience: [
     {
       company: "Fastack Technologies",
+      logo: "https://fastack.ai/wp-content/uploads/2023/08/Fastack_logo_white_118x30px.png",
       role: "Full Stack Engineer",
       period: "Mar 2025 — Mar 2026",
       /** Structured so the pills can count up on scroll. */
@@ -120,9 +121,9 @@ window.PORTFOLIO = {
       stack: ["Next.js", "Groq AI", "MongoDB", "SSE", "JWT"],
       media: {
         type: "image",
-        src: "",
+        src: "assets/studybuddy-preview.svg",
         alt: "StudyBuddy roadmap and streaming tutor interface",
-        note: "Preview coming soon.",
+        note: "",
       },
       links: [
         {
@@ -155,9 +156,9 @@ window.PORTFOLIO = {
       stack: ["Node.js", "Discord.js", "SQLite", "Event-Driven"],
       media: {
         type: "image",
-        src: "",
+        src: "assets/sentrix-preview.svg",
         alt: "SentriX moderation dashboard and raid alert",
-        note: "Preview coming soon.",
+        note: "",
       },
       links: [
         {
@@ -187,9 +188,9 @@ window.PORTFOLIO = {
       stack: ["JavaScript", "Manifest V3", "DOM API"],
       media: {
         type: "image",
-        src: "",
+        src: "assets/unifetch-preview.svg",
         alt: "Unifetch extension popup extracting page assets",
-        note: "Preview coming soon.",
+        note: "",
       },
       links: [
         {
