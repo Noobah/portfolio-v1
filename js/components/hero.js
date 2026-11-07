@@ -60,13 +60,6 @@ export function renderHero(root, data) {
        </a>`
     : "";
 
-  const availabilityHtml = profile.availability
-    ? `<p class="availability">
-         <span class="availability-dot" aria-hidden="true"></span>
-         <span>${profile.availability}</span>
-       </p>`
-    : "";
-
   const heroDetailsHtml = `
     <div class="hero-bio">
       ${profile.bio.map((p) => `<p>${emphasize(p)}</p>`).join("")}
@@ -115,7 +108,6 @@ export function renderHero(root, data) {
             <span class="hero-role-sep" aria-hidden="true">/</span>
             <strong>${profile.focus}</strong>
           </p>
-          ${availabilityHtml}
           ${heroDetailsHtml}
         </div>
         <div class="hero-avatar-wrap">
