@@ -2,18 +2,15 @@
 import { initThemeToggle } from "./theme.js";
 import { icons } from "./icons.js";
 import { initCommandPalette } from "./palette.js";
-import { renderHero } from "./components/hero.js";
-import { renderExperience } from "./components/experience.js?v=20261030-14";
-import { renderProjects } from "./components/projects.js?v=20261030-12";
-import { renderTestimonials } from "./components/testimonials.js?v=20261030-12";
-import { renderStack } from "./components/stack.js";
+import { renderHero } from "./components/hero.js?v=20261107-24";
+import { renderExperience } from "./components/experience.js?v=20261107-24";
+import { renderSkills } from "./components/skills.js?v=20261107-24";
+import { renderProjects } from "./components/projects.js?v=20261107-24";
+import { renderTestimonials } from "./components/testimonials.js?v=20261107-24";
 import { renderEducation } from "./components/education.js";
 import { renderContact } from "./components/contact.js";
 
 const data = window.PORTFOLIO;
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
-);
 
 // ── Document meta ──────────────────────────────────────────
 document.title = data.meta.title;
@@ -22,8 +19,8 @@ document.getElementById("meta-description").content = data.meta.description;
 // ── Header / nav ───────────────────────────────────────────
 const NAV_ITEMS = [
   { label: "Experience", href: "#experience-panel" },
+  { label: "Skills", href: "#skills-panel" },
   { label: "Projects", href: "#projects-panel" },
-  { label: "Stack", href: "#stack-panel" },
   { label: "Education", href: "#education-panel" },
   { label: "Contact", href: "#contact-panel" },
 ];
@@ -31,10 +28,6 @@ const NAV_ITEMS = [
 const navHtml = NAV_ITEMS.map((i) => `<a href="${i.href}">${i.label}</a>`).join("");
 document.getElementById("site-nav").innerHTML = navHtml;
 document.getElementById("mobile-nav").innerHTML = navHtml;
-
-const headerGithub = document.getElementById("header-github");
-headerGithub.href = `https://github.com/${data.githubUsername}`;
-headerGithub.innerHTML = icons.github;
 
 const navToggle = document.getElementById("nav-toggle");
 const mobileNav = document.getElementById("mobile-nav");
@@ -58,14 +51,35 @@ mobileNav.addEventListener("click", (e) => {
   }
 });
 
+// ── Smooth in-page navigation ──────────────────────────────
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+
+  const hash = link.getAttribute("href");
+  if (!hash || hash === "#") return;
+
+  const target = document.querySelector(hash);
+  if (!target) return;
+
+  event.preventDefault();
+  target.scrollIntoView({
+    behavior: reducedMotion.matches ? "auto" : "smooth",
+    block: "start",
+  });
+  history.pushState(null, "", hash);
+});
+
 initThemeToggle(document.getElementById("theme-toggle"));
 
 // ── Sections ───────────────────────────────────────────────
 renderHero(document.getElementById("hero-panel"), data);
 renderExperience(document.getElementById("experience-panel"), data);
+renderSkills(document.getElementById("skills-panel"), data);
 renderProjects(document.getElementById("projects-panel"), data);
 renderTestimonials(document.getElementById("testimonials-panel"), data);
-renderStack(document.getElementById("stack-panel"), data);
 renderEducation(document.getElementById("education-panel"), data);
 renderContact(document.getElementById("contact-panel"), data);
 
@@ -151,80 +165,6 @@ for (const target of document.querySelectorAll("[data-spotlight]")) {
     target.style.removeProperty("--spot-x");
     target.style.removeProperty("--spot-y");
   });
-}
-
-// ── Count-up metrics ───────────────────────────────────────
-const counters = [...document.querySelectorAll("[data-count]")];
-
-function finishCounter(el) {
-  const target = Number(el.dataset.count);
-  el.textContent = `${target}${el.dataset.suffix ?? ""}`;
-}
-
-function animateCounter(el) {
-  if (prefersReducedMotion.matches) {
-    finishCounter(el);
-    return;
-  }
-
-  const target = Number(el.dataset.count);
-  const suffix = el.dataset.suffix ?? "";
-  const duration = 900;
-  const start = performance.now();
-
-  const tick = (now) => {
-    const progressValue = Math.min(1, (now - start) / duration);
-    const eased = 1 - Math.pow(1 - progressValue, 3);
-    el.textContent = `${Math.round(target * eased)}${suffix}`;
-    if (progressValue < 1) requestAnimationFrame(tick);
-  };
-
-  requestAnimationFrame(tick);
-}
-
-if (counters.length) {
-  if (!("IntersectionObserver" in window)) {
-    counters.forEach(finishCounter);
-  } else {
-    const counterObserver = new IntersectionObserver(
-      (entries, observer) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.7 },
-    );
-    counters.forEach((counter) => counterObserver.observe(counter));
-  }
-}
-
-// ── Experience timeline fill ───────────────────────────────
-const timelines = [...document.querySelectorAll("[data-timeline]")];
-let timelineFrame = 0;
-
-function updateTimelines() {
-  timelineFrame = 0;
-  const anchor = window.innerHeight * 0.72;
-  for (const timeline of timelines) {
-    const rect = timeline.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > window.innerHeight) continue;
-    const value = Math.min(1, Math.max(0, (anchor - rect.top) / rect.height));
-    timeline.style.setProperty("--timeline-fill", value.toFixed(3));
-  }
-}
-
-if (timelines.length) {
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!timelineFrame) timelineFrame = requestAnimationFrame(updateTimelines);
-    },
-    { passive: true },
-  );
-  window.addEventListener("resize", updateTimelines);
-  updateTimelines();
 }
 
 // ── Scroll spy for nav highlight ───────────────────────────

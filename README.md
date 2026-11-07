@@ -22,29 +22,13 @@ Open <http://localhost:4173>. Opening `index.html` directly also works in Firefo
 
 Open `data.js`. The important blocks are:
 
-- `profile` — name, role, bio, photo, and resume link
-- `socials` — email, GitHub, LinkedIn
-- `experience` — company, logo, metrics, project timeline, Whasta architecture diagram
-- `projects` — StudyBuddy, SentriX, Unifetch case studies + media slots
+- `profile` — name, role, focus, and bio
+- `socials` — email and LinkedIn
+- `experience` — company, role, dates, tools, and achievement bullets
+- `stack` — skill categories, items, and icons used by the Skills section
+- `projects` — StudyBuddy, SentriX, Unifetch case studies
 - `testimonials` — reviews copied from the Unifetch Firefox Add-ons listing
-- `stack` — categories and items
 - `education` — degrees and one-line highlights
-
-### Replacing project media
-
-Each project has a `media` object. The repo ships with wireframe previews in
-`assets/*-preview.svg`; replace the `src` with a real screenshot when you have one:
-
-```js
-media: {
-  type: "image",
-  src: "assets/studybuddy-preview.svg",
-  alt: "StudyBuddy roadmap interface",
-  note: "",
-}
-```
-
-For a looping video, use `type: "video"`, `src: "assets/demo.mp4"`, and an optional `poster`.
 
 ## Deployment
 
@@ -58,6 +42,4 @@ The workflow at `.github/workflows/deploy.yml` publishes the repo to GitHub Page
 
 ## Before publishing
 
-- Add real screenshots or demo videos for StudyBuddy, SentriX, and Unifetch.
 - Regenerate `assets/og.png` if the name/tagline changes.
-- Confirm the resume URL is publicly accessible.

@@ -12,6 +12,7 @@
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: color-mix(in srgb, var(--background) 88%, transparent);
+  scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
 .panel:first-child {
@@ -102,26 +103,7 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   font-weight: 600;
-}
-
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 1.625rem;
-  height: 1.625rem;
-  border-radius: 0.5rem;
-  background: var(--foreground);
-  color: var(--background);
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 600;
-  transition: transform var(--speed) var(--ease);
-}
-
-.brand:hover .brand-mark {
-  transform: rotate(-6deg);
 }
 
 .brand-name {

@@ -2,7 +2,6 @@
 import { icons } from "../icons.js";
 
 const socialIcon = {
-  github: icons.github,
   linkedin: icons.linkedin,
 };
 
@@ -15,7 +14,7 @@ export function renderContact(root, data) {
     .map(
       (s) => `
       <a class="contact-social" href="${s.href}" target="_blank" rel="noreferrer noopener">
-        ${socialIcon[s.icon] ?? icons.github}
+        ${socialIcon[s.icon] ?? icons.linkedin}
         <span>${s.label}</span>
       </a>`,
     )
@@ -29,20 +28,16 @@ export function renderContact(root, data) {
     <div class="panel-body">
       <div class="contact">
         <div class="contact-copy">
-          <p class="contact-kicker">// open to work</p>
+          <p class="contact-kicker">// contact</p>
           <h2 class="contact-title">Let's build something<br /><span>that holds up.</span></h2>
           <p class="contact-note">
-            I'm open to full-stack and platform roles. The fastest way to reach me is email.
+            For full-stack and platform roles, the fastest way to reach me is email.
           </p>
         </div>
 
         <div class="contact-actions">
           <a class="contact-email" href="${emailHref}">
             <span>${email}</span>
-            <span class="contact-arrow" aria-hidden="true">${icons.arrowUpRight}</span>
-          </a>
-          <a class="contact-email contact-phone" href="tel:+918220576536">
-            <span>${data.profile.phone}</span>
             <span class="contact-arrow" aria-hidden="true">${icons.arrowUpRight}</span>
           </a>
           <div class="contact-row">

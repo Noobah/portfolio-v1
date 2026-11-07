@@ -1,9 +1,6 @@
 /**
  * Portfolio data — edit this file to update the whole site.
  * Loaded before js/main.js and passed to each component.
- *
- * TODO (content you own): replace the placeholder testimonials and add real
- * project screenshots/videos below.
  */
 window.PORTFOLIO = {
   meta: {
@@ -18,20 +15,15 @@ window.PORTFOLIO = {
     name: "Ravi Bhushan V",
     role: "Full Stack Engineer",
     focus: "MERN · TypeScript · AI Systems",
-    status: "Open to work",
     location: "Chennai, India",
-    phone: "+91 82205 76536",
     avatar: "assets/avatar.jpg",
     bio: [
-      "I build scalable backend platforms, real-time APIs, and LLM-powered products that ship fast and hold under pressure. At Fastack Technologies, I shipped systems that cut client onboarding by 87% and eliminated 10+ hours/week of manual ops — from no-code workflow engines to LLM streaming pipelines, all in production.",
+      "I build scalable backend platforms, real-time APIs, and LLM-powered products that ship fast and hold up under pressure. At Fastack Technologies, I cut client onboarding by 87% and saved 10+ hours/week of manual ops.",
     ],
-    resumeUrl:
-      "https://drive.google.com/file/d/13fDBy4ZFwMy8nQl_brfDBZAdpAqP3hZa/view?usp=sharing",
   },
 
   socials: [
     { label: "Gmail", href: "mailto:rbhushan1122@gmail.com", icon: "email" },
-    { label: "GitHub", href: "https://github.com/ivarcodes", icon: "github" },
     {
       label: "LinkedIn",
       href: "https://linkedin.com/in/ravibhushanv",
@@ -39,64 +31,26 @@ window.PORTFOLIO = {
     },
   ],
 
-  /** GitHub username used for profile links and the command palette. */
-  githubUsername: "ivarcodes",
-
   experience: [
     {
       company: "Fastack Technologies",
       role: "Full Stack Engineer",
       location: "Chennai, India",
       period: "Mar 2025 — Mar 2026",
-      /** Structured so the pills can count up on scroll. */
-      metrics: [
-        { value: 87, suffix: "%", label: "faster onboarding" },
-        { value: 40, suffix: "%", label: "lower latency" },
-        { value: 10, suffix: "+", label: "hrs/week saved" },
-        { value: 98, suffix: "%", label: "delivery reliability" },
+      summary:
+        "Shipped full-stack features across React, TypeScript, Node.js, and MongoDB — from data models to production UI.",
+      did: [
+        "Owned full-stack delivery across the MERN stack — React and React Native interfaces, TypeScript, Node.js/Express APIs, and MongoDB data models — taking features from schema design to production UI.",
+        "Architected a no-code workflow automation platform using React Flow + Node.js, enabling non-technical users to configure end-to-end business logic independently — cutting client onboarding time by 87% and eliminating developer dependency entirely.",
+        "Built a bidirectional sync bridge between Tally Prime (XML) and Odoo, mapping records with XML parsing and the Odoo API — eliminating 10+ hours/week of manual financial reconciliation and reducing reporting errors across client operations.",
+        "Optimized LLM streaming pipelines via SSE and request batching, achieving a 40% reduction in time-to-first-token and significantly improving perceived responsiveness on mobile.",
+        "Integrated WhatsApp Cloud API with OAuth 2.0, RBAC, and exponential retry logic, achieving 98% notification delivery reliability with zero unauthorized-access incidents post-launch.",
       ],
-      projects: [
-        {
-          name: "Whasta Automation",
-          tag: "No-Code Platform",
-          description:
-            "Architected a no-code workflow automation platform using React Flow + Node.js, enabling non-technical users to configure end-to-end business logic independently — cutting client onboarding time by 87% and eliminating developer dependency entirely.",
-          metric: "87% faster",
-          stack: ["React Flow", "Node.js", "REST APIs", "Event-Driven"],
-          diagram: {
-            label: "Whasta Automation request flow",
-            nodes: [
-              { title: "React Flow", sub: "visual builder" },
-              { title: "Node.js API", sub: "validate + auth" },
-              { title: "Event bus", sub: "workers + retries" },
-              { title: "Integrations", sub: "WhatsApp · Tally · Odoo" },
-            ],
-          },
-        },
-        {
-          name: "Docsync Engine",
-          tag: "Data Sync",
-          description:
-            "Built a bidirectional sync bridge between Tally Prime (XML) and Odoo using Python/Django, eliminating 10+ hours/week of manual financial reconciliation and reducing reporting errors across client operations.",
-          metric: "10+ hrs saved",
-          stack: ["Python", "Django", "XML Parsing", "Odoo API"],
-        },
-        {
-          name: "LucaGPT Mobile",
-          tag: "AI / LLM",
-          description:
-            "Optimized LLM streaming pipelines via SSE and request batching, achieving a 40% reduction in time-to-first-token and significantly improving perceived responsiveness on mobile.",
-          metric: "40% faster",
-          stack: ["SSE", "LLM Streaming", "Node.js", "React Native"],
-        },
-        {
-          name: "Solocrane",
-          tag: "Integrations",
-          description:
-            "Integrated WhatsApp Cloud API with OAuth 2.0 and exponential retry logic, achieving 98% notification delivery reliability with zero unauthorized-access incidents post-launch.",
-          metric: "98% reliable",
-          stack: ["WhatsApp API", "OAuth 2.0", "RBAC", "Retry Logic"],
-        },
+      learned: [
+        "Event-driven architecture, queue/retry design, and building configurable no-code abstractions for non-technical users.",
+        "Shipping LLM streaming in production: SSE, request batching, and optimizing time-to-first-token on mobile networks.",
+        "Third-party integrations at scale: OAuth 2.0, RBAC, webhook retries, and keeping data in sync across systems.",
+        "Mapping data across heterogeneous systems: XML parsing, Odoo records, and reconciliation-safe sync.",
       ],
     },
   ],
@@ -119,12 +73,6 @@ window.PORTFOLIO = {
       results:
         "Measurably higher engagement than static resources, with answers appearing token-by-token instead of after a long spinner. JWT-secured routes and persistent login are live in production.",
       stack: ["Next.js", "Groq AI", "MongoDB", "SSE", "JWT"],
-      media: {
-        type: "image",
-        src: "assets/studybuddy-preview.svg",
-        alt: "StudyBuddy roadmap and streaming tutor interface",
-        note: "",
-      },
       links: [
         {
           label: "Live Demo",
@@ -154,12 +102,6 @@ window.PORTFOLIO = {
       results:
         "Sub-100ms raid detection, 25% lower memory overhead from the custom command handler, and per-guild settings that persist across reboots.",
       stack: ["Node.js", "Discord.js", "SQLite", "Event-Driven"],
-      media: {
-        type: "image",
-        src: "assets/sentrix-preview.svg",
-        alt: "SentriX moderation dashboard and raid alert",
-        note: "",
-      },
       links: [
         {
           label: "Live Demo",
@@ -186,12 +128,6 @@ window.PORTFOLIO = {
       results:
         "Live on the Firefox Add-ons Marketplace with real users, proving browser API depth beyond typical full-stack work.",
       stack: ["JavaScript", "Manifest V3", "DOM API"],
-      media: {
-        type: "image",
-        src: "assets/unifetch-preview.svg",
-        alt: "Unifetch extension popup extracting page assets",
-        note: "",
-      },
       links: [
         {
           label: "Marketplace",
@@ -249,46 +185,50 @@ window.PORTFOLIO = {
   stack: [
     {
       category: "Frontend",
+      icon: "layers",
+      accent: "#3b82f6",
       items: [
         { name: "React", icon: "react" },
         { name: "Next.js", icon: "nextjs" },
         { name: "TypeScript", icon: "ts" },
         { name: "JavaScript", icon: "javascript" },
-        { name: "Tailwind", icon: "tailwind" },
+        { name: "Tailwind CSS", icon: "tailwind" },
         { name: "Redux", icon: "redux" },
       ],
     },
     {
       category: "Backend",
+      icon: "server",
+      accent: "#0891b2",
       items: [
         { name: "Node.js", icon: "nodejs" },
         { name: "Express", icon: "express" },
+        { name: "REST APIs", icon: "server" },
+        { name: "WebSockets", icon: "radio" },
+      ],
+    },
+    {
+      category: "Databases",
+      icon: "database",
+      accent: "#8b5cf6",
+      items: [
         { name: "MongoDB", icon: "mongodb" },
+        { name: "PostgreSQL", icon: "postgresql" },
         { name: "Redis", icon: "redis" },
-        { name: "Postgres", icon: "postgresql" },
         { name: "Firebase", icon: "firebase" },
       ],
     },
     {
-      category: "AI / GenAI",
-      items: [
-        { name: "OpenAI API", icon: "openai" },
-        { name: "Anthropic Claude", icon: "anthropic" },
-        { name: "Groq / Llama-3", icon: "bolt" },
-        { name: "LLM Streaming", icon: "stream" },
-        { name: "SSE / WebSockets", icon: "radio" },
-        { name: "Prompt Engineering", icon: "terminal" },
-      ],
-    },
-    {
-      category: "DevOps",
+      category: "DevOps & Tools",
+      icon: "terminal",
+      accent: "#16a34a",
       items: [
         { name: "Git", icon: "git" },
         { name: "GitHub", icon: "github" },
-        { name: "Vercel", icon: "vercel" },
-        { name: "Render", icon: "render" },
         { name: "Docker", icon: "docker" },
         { name: "Linux", icon: "linux" },
+        { name: "Vercel", icon: "vercel" },
+        { name: "Render", icon: "render" },
         { name: "Postman", icon: "postman" },
       ],
     },

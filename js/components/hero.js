@@ -1,66 +1,73 @@
-/** Hero panel: intro, availability, socials, and portrait. */
+/** Hero panel: cover, photo, intro, location, and socials. */
 import { icons } from "../icons.js";
 
 const socialIcon = {
   email: icons.mail,
-  github: icons.github,
   linkedin: icons.linkedin,
 };
 
 export function renderHero(root, data) {
   const { profile, socials } = data;
   const [firstName, ...rest] = profile.name.split(" ");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const coverSrc = reduceMotion
+    ? "assets/hero-cover-still.jpg"
+    : "assets/hero-cover.gif";
 
   const socialsHtml = socials
     .map(
       (s) => `
       <a class="social-btn" href="${s.href}" ${s.href.startsWith("http") ? 'target="_blank" rel="noreferrer noopener"' : ""}>
-        ${socialIcon[s.icon] ?? icons.github}
+        ${socialIcon[s.icon] ?? icons.mail}
         <span>${s.label}</span>
       </a>`,
     )
     .join("");
 
+  const locationHtml = profile.location
+    ? `<span class="hero-location">
+         ${icons.pin}
+         <span>${profile.location}</span>
+         <span class="hero-photo-arrow" aria-hidden="true">${icons.arrowCurve}</span>
+       </span>`
+    : "";
+
   root.innerHTML = `
+    <div class="hero-cover" aria-hidden="true">
+      <img src="${coverSrc}" alt="" loading="eager" decoding="async" />
+    </div>
     <div class="hero">
-      <div class="hero-copy">
-        <h1 class="hero-name">
-          <span>${firstName}</span>
-          <span class="hero-name-rest">${rest.join(" ")}</span>
-        </h1>
-        <p class="hero-role">
-          ${profile.role}
-          <span class="hero-role-sep" aria-hidden="true">/</span>
-          <strong>${profile.focus}</strong>
-        </p>
-
-        <span class="hero-status">
-          <span class="status-dot" aria-hidden="true"></span>
-          ${profile.status} · ${profile.location}
-        </span>
-
-        <div class="hero-bio">
-          ${profile.bio.map((p) => `<p>${emphasize(p)}</p>`).join("")}
+      <div class="hero-head">
+        <div class="hero-avatar-wrap">
+          <img
+            class="hero-avatar"
+            src="${profile.avatar}"
+            alt="${profile.name}"
+            width="112"
+            height="112"
+            loading="eager"
+            decoding="async"
+            draggable="false" />
+          ${locationHtml}
         </div>
-
-        <div class="socials">
-          <a class="social-btn phone-btn" href="tel:+918220576536">
-            ${icons.phone}
-            <span>${profile.phone}</span>
-          </a>
-          ${socialsHtml}
-          <a class="social-btn resume-btn" href="${profile.resumeUrl}" target="_blank" rel="noreferrer noopener">
-            ${icons.file}
-            <span>Resume</span>
-          </a>
+        <div class="hero-copy">
+          <h1 class="hero-name">
+            <span>${firstName}</span>
+            <span class="hero-name-rest">${rest.join(" ")}</span>
+          </h1>
+          <p class="hero-role">
+            ${profile.role}
+            <span class="hero-role-sep" aria-hidden="true">/</span>
+            <strong>${profile.focus}</strong>
+          </p>
         </div>
       </div>
 
-      <figure class="hero-figure">
-        <div class="hero-avatar-wrap">
-          <img class="hero-avatar" src="${profile.avatar}" alt="Portrait of ${profile.name}" width="440" height="440" fetchpriority="high" decoding="async" />
-        </div>
-      </figure>
+      <div class="hero-bio">
+        ${profile.bio.map((p) => `<p>${emphasize(p)}</p>`).join("")}
+      </div>
+
+      <div class="socials">${socialsHtml}</div>
     </div>`;
 }
 

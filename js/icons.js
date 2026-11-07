@@ -61,6 +61,9 @@ export const icons = {
     '<path d="M10 11H6a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2h1a1 1 0 0 1 1 1v5Z"/><path d="M10 11c0 4-2 6-5 7"/><path d="M19 11h-4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2h1a1 1 0 0 1 1 1v5Z"/><path d="M19 11c0 4-2 6-5 7"/>',
   ),
   arrowRight: svg('<path d="M5 12h14M13 6l6 6-6 6"/>'),
+  arrowCurve: svg(
+    '<path d="M21 4c-8 0-14 4-18 12"/><path d="m3 10 0 7 7-1"/>',
+  ),
   activity: svg('<path d="M3 12h4l3-8 4 16 3-8h4"/>'),
   pin: svg(
     '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
@@ -72,6 +75,9 @@ export const icons = {
   code: svg('<path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/>'),
   server: svg(
     '<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/>',
+  ),
+  database: svg(
+    '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
   ),
   workflow: svg(
     '<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h5a4 4 0 0 1 4 4v5"/>',

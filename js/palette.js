@@ -6,16 +6,15 @@ export function initCommandPalette({ data, toggleButton }) {
   const emailHref =
     data.socials.find((s) => s.icon === "email")?.href ?? "mailto:";
   const email = emailHref.replace(/^mailto:/, "");
-  const github = `https://github.com/${data.githubUsername}`;
   const linkedin =
     data.socials.find((s) => s.icon === "linkedin")?.href ??
     "https://linkedin.com";
 
   const sections = [
     ["Experience", "#experience-panel", "02"],
-    ["Projects", "#projects-panel", "03"],
-    ["Testimonials", "#testimonials-panel", "04"],
-    ["Stack", "#stack-panel", "05"],
+    ["Skills", "#skills-panel", "03"],
+    ["Projects", "#projects-panel", "04"],
+    ["Testimonials", "#testimonials-panel", "05"],
     ["Education", "#education-panel", "06"],
     ["Contact", "#contact-panel", "07"],
   ];
@@ -38,28 +37,12 @@ export function initCommandPalette({ data, toggleButton }) {
       run: copyEmail,
     },
     {
-      label: "Open GitHub",
-      group: "Actions",
-      hint: "github.com",
-      icon: icons.github,
-      keywords: "code repository source",
-      run: () => openExternal(github),
-    },
-    {
       label: "Open LinkedIn",
       group: "Actions",
       hint: "linkedin.com",
       icon: icons.linkedin,
       keywords: "work experience profile",
       run: () => openExternal(linkedin),
-    },
-    {
-      label: "Open resume",
-      group: "Actions",
-      hint: "PDF",
-      icon: icons.file,
-      keywords: "cv curriculum vitae",
-      run: () => openExternal(data.profile.resumeUrl),
     },
     {
       label: "Toggle theme",
