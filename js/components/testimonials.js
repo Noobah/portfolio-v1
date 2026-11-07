@@ -38,14 +38,6 @@ export function renderTestimonials(root, data) {
             <a href="https://addons.mozilla.org/en-US/firefox/addon/unifetch/reviews/" target="_blank" rel="noreferrer noopener">Unifetch Firefox Add-ons listing</a>.
           </p>
         </div>
-        <div class="testimonials-controls">
-          <button class="testimonial-control is-prev" type="button" data-testimonial-prev aria-label="Previous testimonials">
-            ${icons.arrowRight}
-          </button>
-          <button class="testimonial-control" type="button" data-testimonial-next aria-label="Next testimonials">
-            ${icons.arrowRight}
-          </button>
-        </div>
       </div>
       <div class="testimonials-track" data-testimonials-track tabindex="0" aria-label="Testimonials, scroll horizontally">
         ${cards}
@@ -53,33 +45,19 @@ export function renderTestimonials(root, data) {
     </div>`;
 
   const track = root.querySelector("[data-testimonials-track]");
-  const prev = root.querySelector("[data-testimonial-prev]");
-  const next = root.querySelector("[data-testimonial-next]");
+  if (!track) return;
 
-  const step = () => {
-    const card = track.querySelector(".testimonial-card");
-    if (!card) return track.clientWidth;
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    return card.getBoundingClientRect().width + gap;
+  // ── Auto-scroll: keeps moving, pauses on hover ──
+  let timer;
+  const scrollStep = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    if (max <= 0) return;
+    track.scrollLeft += 260;
+    if (track.scrollLeft >= max) track.scrollLeft = 0;
   };
-
-  const updateControls = () => {
-    const max = track.scrollWidth - track.clientWidth - 1;
-    prev.disabled = track.scrollLeft <= 1;
-    next.disabled = track.scrollLeft >= max;
-  };
-
-  const scrollByCard = (direction) => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    track.scrollBy({
-      left: direction * step(),
-      behavior: reduced ? "auto" : "smooth",
-    });
-  };
-
-  prev.addEventListener("click", () => scrollByCard(-1));
-  next.addEventListener("click", () => scrollByCard(1));
-  track.addEventListener("scroll", updateControls, { passive: true });
-  window.addEventListener("resize", updateControls, { passive: true });
-  updateControls();
+  timer = setInterval(scrollStep, 3400);
+  track.addEventListener("mouseenter", () => clearInterval(timer));
+  track.addEventListener("mouseleave", () => {
+    timer = setInterval(scrollStep, 3400);
+  });
 }

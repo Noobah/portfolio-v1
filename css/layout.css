@@ -6,12 +6,10 @@
   padding-inline: 1rem;
 }
 
-/* Panels are stacked sections divided by hairlines, blueprint style */
+/* Clean stacked sections divided by hairlines. */
 .panel {
-  border-left: 1px solid var(--line);
-  border-right: 1px solid var(--line);
+  --panel-space: 1.75rem;
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--background) 88%, transparent);
   scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
@@ -21,10 +19,10 @@
 
 .panel-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.8125rem 1.25rem;
+  padding: 0.85rem 1.25rem;
   border-bottom: 1px solid var(--line);
 }
 
@@ -33,40 +31,78 @@
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .panel-title::before {
   content: "";
-  width: 0.375rem;
-  height: 0.375rem;
-  border-radius: 1px;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
   background: var(--accent);
   flex-shrink: 0;
 }
 
 .panel-index {
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.7rem;
   color: var(--muted-soft);
   white-space: nowrap;
 }
 
 .panel-body {
-  padding: 1.75rem 1.25rem;
+  padding: var(--panel-space) 1.25rem;
+}
+
+#skills-panel {
+  --panel-space: 1.45rem;
+}
+
+#projects-panel {
+  --panel-space: 2.4rem;
+}
+
+#testimonials-panel {
+  --panel-space: 1.8rem;
+}
+
+#education-panel {
+  --panel-space: 2.6rem;
+}
+
+#contact-panel {
+  --panel-space: 2.9rem;
 }
 
 @media (min-width: 640px) {
+  .panel {
+    --panel-space: 2.1rem;
+  }
   .panel-header,
   .panel-body {
     padding-inline: 1.75rem;
   }
   .panel-body {
-    padding-block: 2rem;
+    padding-block: var(--panel-space);
+  }
+  #skills-panel {
+    --panel-space: 1.7rem;
+  }
+  #projects-panel {
+    --panel-space: 2.7rem;
+  }
+  #testimonials-panel {
+    --panel-space: 2rem;
+  }
+  #education-panel {
+    --panel-space: 2.9rem;
+  }
+  #contact-panel {
+    --panel-space: 3.2rem;
   }
 }
 
@@ -74,10 +110,12 @@
 @media (prefers-reduced-motion: no-preference) {
   .reveal {
     opacity: 0;
-    transition: opacity 0.32s var(--ease);
+    transform: translateY(6px);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
   }
   .reveal.is-visible {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -87,9 +125,7 @@
   position: sticky;
   top: 0;
   z-index: 60;
-  background: color-mix(in srgb, var(--background) 78%, transparent);
-  backdrop-filter: blur(14px) saturate(1.1);
-  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  background: var(--background);
   border-bottom: 1px solid var(--line);
 }
 
@@ -103,24 +139,25 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: 0.9375rem;
-  letter-spacing: -0.02em;
+  font-size: 0.95rem;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
 }
 
 .brand-dot {
-  color: var(--muted);
+  color: var(--accent);
 }
 
 .site-nav {
   display: none;
   gap: 1.25rem;
   margin-left: auto;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--muted);
 }
@@ -138,7 +175,7 @@
   right: 0;
   bottom: -0.125rem;
   height: 1px;
-  background: currentColor;
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--speed) var(--ease);
@@ -184,7 +221,7 @@
 }
 
 .icon-btn:active {
-  transform: scale(0.9);
+  transform: scale(0.92);
 }
 
 .nav-toggle {
@@ -197,7 +234,7 @@
   border-top: 1px solid var(--line);
   padding: 0.5rem 1rem 1rem;
   background: var(--background);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
 }
 
 .mobile-nav a {
@@ -218,7 +255,7 @@
   bottom: -1px;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: left center;
   pointer-events: none;
@@ -239,7 +276,7 @@
 .site-footer {
   border-top: 1px solid var(--line);
   margin-top: 4rem;
-  background: color-mix(in srgb, var(--background) 75%, transparent);
+  padding-block: 1.5rem;
 }
 
 .footer-inner {
@@ -248,19 +285,18 @@
   gap: 0.75rem;
   align-items: center;
   justify-content: space-between;
-  padding-block: 1.5rem;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
   color: var(--muted-soft);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
 }
 
 .text-btn {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--muted);
   transition: color var(--speed) ease;
 }

@@ -1,0 +1,13 @@
+<!doctype html><meta charset="utf-8"><body style="margin:0;background:#fff;color:#000;font:12px monospace">
+<iframe id="f" src="/" style="width:1280px;height:900px;border:0"></iframe>
+<pre id="out" style="position:fixed;left:0;top:0;background:#fff;color:#000;padding:8px;z-index:9;font:12px monospace"></pre>
+<script>
+const f=document.getElementById('f');
+f.addEventListener('load',()=>{
+  const d=f.contentDocument;
+  const sels=['.panel','.hero','.hero-head','.hero-avatar-wrap','.hero-avatar','.hero-location','.hero-copy','.hero-name','.hero-role','.availability','.hero-bio','.hero-about','.socials','.hero-stats'];
+  const lines=[];
+  for(const s of sels){const el=d.querySelector(s); if(!el) continue; const r=el.getBoundingClientRect(); const cs=f.contentWindow.getComputedStyle(el); lines.push(s+': x='+r.x.toFixed(1)+' y='+r.y.toFixed(1)+' w='+r.width.toFixed(1)+' h='+r.height.toFixed(1)+' padL='+cs.paddingLeft+' padR='+cs.paddingRight);}
+  document.getElementById('out').textContent=lines.join('\n');
+});
+</script>

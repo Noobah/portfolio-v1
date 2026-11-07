@@ -28,6 +28,9 @@ export const icons = {
   file: svg(
     '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
   ),
+  download: svg(
+    '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',
+  ),
   arrowUpRight: svg('<path d="M7 17 17 7M8 7h9v9"/>'),
   chevronDown: svg('<path d="m6 9 6 6 6-6"/>'),
   openai: filled(

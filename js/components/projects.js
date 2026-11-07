@@ -1,4 +1,4 @@
-/** Projects panel: compact, scannable project rows with optional case studies. */
+/** Projects panel: collapsible project cards with live/GitHub links. */
 import { icons } from "../icons.js";
 
 export function renderProjects(root, data) {
@@ -6,32 +6,45 @@ export function renderProjects(root, data) {
     .map((p, i) => {
       const index = String(i + 1).padStart(2, "0");
       const monogram = p.monogram ?? p.name.slice(0, 2).toUpperCase();
+      const media = p.image
+        ? `<figure class="project-media">
+             <img
+               src="${p.image}"
+               alt="${p.imageAlt ?? `${p.name} preview`}"
+               width="1000"
+               height="1000"
+               loading="lazy"
+               decoding="async" />
+           </figure>`
+        : `<span class="project-monogram" aria-hidden="true">${monogram}</span>`;
 
       return `
-    <article class="project-card spotlight" data-spotlight style="--project-accent: ${p.accent ?? "var(--accent)"}">
-      <div class="project-main">
-        <span class="project-monogram" aria-hidden="true">${monogram}</span>
+    <details class="project-card spotlight" data-spotlight style="--project-accent: ${p.accent ?? "var(--accent)"}">
+      <summary class="project-head">
+        <div class="project-main">
+          ${media}
 
-        <div class="project-copy">
-          <div class="project-title-row">
-            <h3 class="project-name">${p.name}</h3>
-            <span class="tag">${p.tag}</span>
-            <span class="project-index" aria-hidden="true">${index}</span>
-          </div>
+          <div class="project-copy">
+            <div class="project-title-row">
+              <h3 class="project-name">${p.name}</h3>
+              <span class="tag">${p.tag}</span>
+              <span class="project-index" aria-hidden="true">${index}</span>
+            </div>
 
-          <p class="project-summary">${p.summary ?? p.results}</p>
+            <p class="project-summary">${p.summary ?? p.results}</p>
 
-          <div class="project-meta">
-            <span class="project-metric">
-              <span class="metric-dot" aria-hidden="true"></span>
-              <span>${p.metric}</span>
-            </span>
-            <div class="stack-row">
-              ${p.stack.map((s) => `<span class="tag">${s}</span>`).join("")}
+            <div class="project-meta">
+              <span class="project-metric">
+                <span class="metric-dot" aria-hidden="true"></span>
+                <span>${p.metric}</span>
+              </span>
+              <div class="stack-row">
+                ${p.stack.map((s) => `<span class="tag">${s}</span>`).join("")}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </summary>
 
       <div class="project-actions">
         <div class="project-links">
@@ -44,21 +57,8 @@ export function renderProjects(root, data) {
             })
             .join("")}
         </div>
-
-        <details class="project-more">
-          <summary class="project-toggle">
-            <span>Case study</span>
-            ${icons.chevronDown}
-          </summary>
-          <dl class="psl">
-            <div><dt>Problem</dt><dd>${p.problem}</dd></div>
-            <div><dt>Approach</dt><dd>${p.approach}</dd></div>
-            <div><dt>Architecture</dt><dd>${p.architecture}</dd></div>
-            <div><dt>Results</dt><dd>${p.results}</dd></div>
-          </dl>
-        </details>
       </div>
-    </article>`;
+    </details>`;
     })
     .join("");
 

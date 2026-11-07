@@ -2,11 +2,12 @@
 import { initThemeToggle } from "./theme.js";
 import { icons } from "./icons.js";
 import { initCommandPalette } from "./palette.js";
-import { renderHero } from "./components/hero.js?v=20261107-24";
-import { renderExperience } from "./components/experience.js?v=20261107-24";
-import { renderSkills } from "./components/skills.js?v=20261107-24";
-import { renderProjects } from "./components/projects.js?v=20261107-24";
-import { renderTestimonials } from "./components/testimonials.js?v=20261107-24";
+import "./cursor.js";
+import { renderHero } from "./components/hero.js?v=20261107-26";
+import { renderExperience } from "./components/experience.js?v=20261107-27";
+import { renderSkills } from "./components/skills.js?v=20261107-25";
+import { renderProjects } from "./components/projects.js?v=20261107-25";
+import { renderTestimonials } from "./components/testimonials.js?v=20261107-25";
 import { renderEducation } from "./components/education.js";
 import { renderContact } from "./components/contact.js";
 
@@ -21,6 +22,7 @@ const NAV_ITEMS = [
   { label: "Experience", href: "#experience-panel" },
   { label: "Skills", href: "#skills-panel" },
   { label: "Projects", href: "#projects-panel" },
+  { label: "Testimonials", href: "#testimonials-panel" },
   { label: "Education", href: "#education-panel" },
   { label: "Contact", href: "#contact-panel" },
 ];

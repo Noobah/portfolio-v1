@@ -3,6 +3,7 @@ import { icons } from "../icons.js";
 
 const socialIcon = {
   linkedin: icons.linkedin,
+  github: icons.github,
 };
 
 export function renderContact(root, data) {

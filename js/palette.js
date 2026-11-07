@@ -280,8 +280,10 @@ export function initCommandPalette({ data, toggleButton }) {
     else open();
   });
 
-  toggleButton.addEventListener("click", open);
-  toggleButton.innerHTML = `${icons.command}<span class="palette-hint">K</span>`;
+  if (toggleButton) {
+    toggleButton.addEventListener("click", open);
+    toggleButton.innerHTML = `${icons.command}<span class="palette-hint">K</span>`;
+  }
 }
 
 function escapeHtml(value) {
