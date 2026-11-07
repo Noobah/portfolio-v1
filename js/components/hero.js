@@ -67,15 +67,10 @@ export function renderHero(root, data) {
        </p>`
     : "";
 
-  const aboutHtml = profile.about
-    ? `<p class="hero-about">${profile.about}</p>`
-    : "";
-
   const heroDetailsHtml = `
     <div class="hero-bio">
       ${profile.bio.map((p) => `<p>${emphasize(p)}</p>`).join("")}
     </div>
-    ${aboutHtml}
     <div class="socials">${socialsHtml}${resumeHtml}</div>`;
 
   const statsHtml = profile.stats?.length
